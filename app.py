@@ -1,10 +1,6 @@
-from flask import Flask, render_template
+import os
 
-app=Flask(__name__)
+from qair import app
 
-@app.route('/')
-def index():
-    return"<h1>Hello World</h1>"
-
-if __name__=='__main__':
-    app.run(debug=True)
+if __name__ == "__main__":
+    app.run(debug=True, port=os.getenv("PORT") or 5000)
