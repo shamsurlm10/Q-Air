@@ -1,5 +1,10 @@
 {% extends "base.html" %}
-{% block  title %} Login {% endblock %}
+{% block title %} Login {% endblock %}
+
+{% block css%}
+<link rel="stylesheet" href="{{url_for('static', filename='style/users/log-reg.css')}}">
+{% endblock %}
+
 {% block content %}
 <div>
     <div class="mt-5 container shadow p-3 mb-5 bg-white rounded d-flex align-items-center"
