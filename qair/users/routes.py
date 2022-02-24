@@ -42,7 +42,7 @@ def register_user():
                     form.full_name.data, form.passport.data)
         db.session.add(user)
         db.session.commit()
-        flash("Account Created")
+        flash(f"Account created for {user.full_name}", "success")
         return redirect(url_for("users.login_user"))
     return render_template("users/register.html", form=form)
 

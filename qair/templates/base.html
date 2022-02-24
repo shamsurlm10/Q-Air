@@ -31,8 +31,7 @@
                         </li>
                         {% if not current_user.is_authenticated %}
                         <li>
-                            <a href="{{url_for('users.login_user')}}"><i class="fa fa-sort-alpha-asc"
-                                    aria-hidden="true"> </i> <span style="margin-left:10px;">Sign in</span> </a>
+                            <a href="{{url_for('users.login_user')}}"><i class="fa-solid fa-circle-user"></i></i><span style="margin-left:10px;">Sign in</span></a>
                         </li>
                         {% endif %}
                         <li>
@@ -53,8 +52,7 @@
                         </li>
                         {% if current_user.is_authenticated %}
                         <li>
-                            <a href="{{url_for('users.logout_user')}}"> <i class="fa fa-comment-o" aria-hidden="true">
-                                </i> <span style="margin-left:10px;"> Logout</span> </a>
+                            <a href="{{url_for('users.logout_user')}}"><i class="fa-solid fa-right-to-bracket"></i><span style="margin-left:10px;"> Logout</span></a>
                         </li>
                         {% endif %}
                     </ul>
@@ -92,7 +90,7 @@
                         <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
                             <div
                                 class="toast-header align-items-center bg-{{ category }} text-{{ 'light' if category != 'info' and category != 'warning' else 'dark' }}">
-                                <p class="me-auto my-0">{{ "Event Finder" }}</p>
+                                <p class="me-auto my-0">{{ "Q-Air" }}</p>
                                 <small class="me-2">Message</small>
                                 <button type="button" class="m-0 btn btn-sm btn-{{ category }}" data-bs-dismiss="toast"
                                     aria-label="Close">
