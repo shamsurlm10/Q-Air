@@ -1,5 +1,52 @@
 {% extends "base.html" %}
 {% block  title %} Login {% endblock %}
 {% block content %}
-<h1>Asiq gay in login</h1>
+<div>
+    <div class="mt-5 container shadow p-3 mb-5 bg-white rounded d-flex align-items-center"
+        style="height: 400px; width:400px; border: 2px;">
+        <div class="col-md-8 offset-md-2">
+            <form method="POST">
+                {{ form.hidden_tag() }}
+                <div class="mb-3">
+                    {% if form.email.errors%}
+                    {{ form.email(class="form-control input-box is-invalid", id="email") }}
+                    <div class="invalid-feeedback">
+                        {% for error in form.email.errors %}
+                        <span>{{ error }}</span>
+                        {%endfor%}
+                    </div>
+                    {% else %}
+                    {{ form.email(class="form-control input-box", id="email") }}
+                    {%endif%}
+                </div>
+                <div>
+                    {% if form.password.errors%}
+                    {{form.password(class="form-control input-box is-invalid", id="password")}}
+                    <div class="invalid-feeedback">
+                        {% for error in form.password.errors %}
+                        <span>{{ error }}</span>
+                        {%endfor%}
+                    </div>
+                    {%else%}
+                    {{form.password(class="form-control input-box", id="password")}}
+                    {%endif%}
+                </div>
+                <div class="mb-0 log-reg-text">
+                    <strong>Forget Password</strong>
+                </div>
+
+                <div class="mx-2 log-reg-text">
+                    {{ form.remember_me(class="form-check-input") }}
+                </div>
+                <div>
+                    <a href="{{url_for('users.register_user')}}" class="link-dark log-reg-text">Create a new
+                        account!</a>
+                </div>
+                <div class="btn btn-primary btn-sm mt-2 log-btn">
+                    {{form.submit(class="btn btn-dark form-control")}}
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 {% endblock %}
