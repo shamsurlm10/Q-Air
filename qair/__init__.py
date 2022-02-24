@@ -7,7 +7,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
 from flask_login import LoginManager
-
+from flask_bcrypt import Bcrypt
 
 load_dotenv()
 
@@ -40,7 +40,7 @@ db = SQLAlchemy(app)
 migrate = Migrate(app, db)
 
 # Encryption
-# bcrypt = Bcrypt(app)
+bcrypt = Bcrypt(app)
 
 # Login-Manager
 login_manager = LoginManager(app)

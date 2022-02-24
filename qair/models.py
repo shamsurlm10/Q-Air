@@ -1,11 +1,8 @@
-import enum
-from datetime import date, datetime
+from datetime import datetime
 
 from flask_login import UserMixin
 from itsdangerous import TimedSerializer
 from itsdangerous.exc import BadTimeSignature, SignatureExpired
-from sqlalchemy.orm import defaultload
-from timeago import format
 
 from qair import app, db, login_manager
 
@@ -21,18 +18,17 @@ class User(db.Model, UserMixin):
     passport = db.Column(db.Integer, nullable=False, unique=True)
     email = db.Column(db.String(150), nullable=False, unique=True)
     password = db.Column(db.String, nullable=False)
-    verified_code = db.Column(db.String)
     is_verified = db.Column(db.Boolean, default=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
 
     def __init__(
-        self, email: str, password: str, verified_code: str, full_name: str
+        self, email: str, password: str, full_name: str, passport: int
     ) -> None:
         self.email = email
         self.password = password
-        self.verified_code = verified_code
         self.full_name = full_name
+        self.passport = passport
 
 
     def get_joindate(self):
