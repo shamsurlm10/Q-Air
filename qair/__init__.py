@@ -4,6 +4,9 @@ from datetime import datetime, timedelta
 
 from dotenv import load_dotenv
 from flask import Flask
+from flask_sqlalchemy import SQLAlchemy
+from flask_migrate import Migrate
+from flask_login import LoginManager
 
 
 load_dotenv()
@@ -15,8 +18,8 @@ app = Flask(__name__)
 app.secret_key = os.getenv("SECRET_KEY")
 
 # Configuration
-# app.config['SQLALCHEMY_DATABASE_URI'] = f"postgresql://{os.getenv('DB_USERNAME')}:{os.getenv('DB_PASSWORD')}@{os.getenv('DB_SERVER')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}"
-# app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['SQLALCHEMY_DATABASE_URI'] = f"postgresql://{os.getenv('DB_USERNAME')}:{os.getenv('DB_PASSWORD')}@{os.getenv('DB_SERVER')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}"
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 # app.config['UPLOAD_FOLDER'] = "static/images/uploads"
 # app.config["MAIL_SERVER"] = "smtp.googlemail.com"
 # app.config["MAIL_PORT"] = 587
@@ -28,22 +31,22 @@ app.secret_key = os.getenv("SECRET_KEY")
 
 
 # Database
-# db = SQLAlchemy(app)
+db = SQLAlchemy(app)
 
 # Marshmallow
 # ma = Marshmallow(app)
 
 # Migration
-# migrate = Migrate(app, db)
+migrate = Migrate(app, db)
 
 # Encryption
 # bcrypt = Bcrypt(app)
 
 # Login-Manager
-# login_manager = LoginManager(app)
+login_manager = LoginManager(app)
 
-# login_manager.login_view = "users.login_user"
-# login_manager.login_message_category = "primary"
+login_manager.login_view = "users.login_user"
+login_manager.login_message_category = "primary"
 
 
 # Mail

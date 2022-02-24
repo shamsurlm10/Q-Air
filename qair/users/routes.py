@@ -10,3 +10,7 @@ def login_user():
 @users.route("/register", methods=["GET","POST"])
 def register_user():
     return render_template("users/register.html")
+
+@users.route("/", methods=["GET","POST"])
+def dashboard():
+    return render_template("mains/homepage.html")
