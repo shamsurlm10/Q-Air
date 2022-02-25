@@ -10,7 +10,7 @@ class RegisterForm(FlaskForm):
         DataRequired(), Length(min=4, max=150)
     ], render_kw={"placeholder": "Email"})
     
-    passport = IntegerField("Passport", validators=[
+    passport = StringField("Passport", validators=[
         DataRequired()], render_kw={"placeholder": "Passport Number"})
     
     full_name = StringField("Full Name", validators=[

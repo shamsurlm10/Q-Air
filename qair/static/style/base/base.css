@@ -42,9 +42,9 @@ body {
 }
 
 #page-content-wrapper {
-    /* width: 100%; */
+    width: 100%;
     position: absolute;
-    /* padding: 10px; */
+    padding: 10px;
 }
 
 #wrapper.toggled #page-content-wrapper {
@@ -117,7 +117,6 @@ body {
     #wrapper.toggled #sidebar-wrapper {
         width: 40px;
         
-        
     }
 
 #wrapper.toggled span {
@@ -138,7 +137,6 @@ body {
         margin-right: 0;
     }
 }
-
 
 @media(max-width:414px) {
 
