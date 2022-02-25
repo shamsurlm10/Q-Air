@@ -1,9 +1,14 @@
+import os
+
 from flask import (Blueprint, flash, redirect, render_template, request,
                    session, url_for)
-from qair.users.forms import RegisterForm, LoginForm
+from qair.users.forms import RegisterForm, LoginForm, ResetPasswordForm
 from qair import bcrypt, db
 from qair.models import User
 from flask_login import login_user as login_user_function, login_required, logout_user as logout_user_function, current_user
+from qair.users.utils import generate_token, password_reset_key_mail_body
+from qair.mails import send_mail
+from qair.users.forms import ForgetPasswordForm, ResetPasswordForm
 
 users = Blueprint("users", __name__, url_prefix="/users")
 
@@ -35,13 +40,21 @@ def register_user():
         return redirect(url_for('users.dashboard'))
     form = RegisterForm()
     if form.validate_on_submit():
+        # Generating token
+        generated_token_for_email = generate_token(6)
         # Hashing
         hashed_password = bcrypt.generate_password_hash(
             form.password.data).decode("utf-8")
+        hashed_token = bcrypt.generate_password_hash(
+            generated_token_for_email).decode("utf-8")
         user = User(form.email.data, hashed_password,
                     form.full_name.data, form.passport.data)
         db.session.add(user)
         db.session.commit()
+        # Sending email
+        send_mail(user.email, "Email Verification Code",
+                  f"Your Token is {generated_token_for_email}")
+        fetched_user = User.query.filter_by(id=user.id).first()
         flash(f"Account created for {user.full_name}", "success")
         return redirect(url_for("users.login_user"))
     return render_template("users/register.html", form=form)
@@ -57,3 +70,18 @@ def dashboard():
 def logout_user():
     logout_user_function()
     return redirect(url_for("users.login_user"))
+
+@users.route("/forget_password", methods=["GET", "POST"])
+def forget_password():
+    if current_user.is_authenticated:
+        return redirect(url_for('mains.homepage'))
+    form = ForgetPasswordForm()
+    if form.validate_on_submit():
+        # Fetching the user
+        user = User.query.filter_by(email=form.email.data).first()
+        # Sending email
+        send_mail(user.email, "Password Reset Token",
+                  password_reset_key_mail_body(user.id, user.get_reset_token(), int(os.getenv("EXPIRE_TIME"))))
+        flash(f"Check your email to continue.", "primary")
+        return redirect(url_for('users.login_user'))
+    return render_template("users/forget_password.html", form=form)

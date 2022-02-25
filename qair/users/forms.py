@@ -2,6 +2,7 @@ from flask_wtf import FlaskForm
 from wtforms import (EmailField, IntegerField, BooleanField, PasswordField, StringField, SubmitField)
 from wtforms.validators import (DataRequired, Email, EqualTo, Length,
                                 ValidationError)
+from qair.models import User
 
 
 class RegisterForm(FlaskForm):
@@ -40,3 +41,14 @@ class LoginForm(FlaskForm):
     remember_me = BooleanField("Remember Me")
     
     submit = SubmitField("Login")
+    
+class ForgetPasswordForm(FlaskForm):
+    email = EmailField("Email Address", validators=[
+        DataRequired(), Length(min=4, max=150), Email()
+    ], render_kw={"placeholder": "Enter your associated email address"})
+    submit = SubmitField("Send Email")
+
+    def validate_email(self, email: str):
+        user = User.query.filter_by(email=email.data).first()
+        if not user:
+            raise ValidationError("Email is not valid. Try another one.")
