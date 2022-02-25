@@ -85,3 +85,23 @@ def forget_password():
         flash(f"Check your email to continue.", "primary")
         return redirect(url_for('users.login_user'))
     return render_template("users/forget_password.html", form=form)
+
+@users.route("/reset_password/<int:id>/<string:token>", methods=["GET", "POST"])
+def reset_password(id: int, token: str):
+    if current_user.is_authenticated:
+        return redirect(url_for('mains.homepage'))
+    # Verifying the token
+    veridication_result = User.verify_reset_key(
+        id, token, int(os.getenv("EXPIRE_TIME")))
+    if not veridication_result["is_authenticate"]:
+        return render_template("mains/errors.html", status=400, message=f"{veridication_result['message']}")
+    form = ResetPasswordForm()
+    if form.validate_on_submit():
+        hashed_password = bcrypt.generate_password_hash(
+            form.password.data).decode("utf-8")
+        user = User.query.get(id)
+        user.password = hashed_password
+        db.session.commit()
+        flash(f"{veridication_result['message']}", "success")
+        return redirect(url_for("users.login_user"))
+    return render_template("users/reset_password.html", form=form)

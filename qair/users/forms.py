@@ -52,3 +52,13 @@ class ForgetPasswordForm(FlaskForm):
         user = User.query.filter_by(email=email.data).first()
         if not user:
             raise ValidationError("Email is not valid. Try another one.")
+        
+class ResetPasswordForm(FlaskForm):
+    password = PasswordField("New Password", validators=[
+        DataRequired(), Length(min=6)
+    ], render_kw={"placeholder": "Type a new password"})
+    c_password = PasswordField("Retype Password", validators=[
+        DataRequired(), Length(min=6), EqualTo(
+            "password", "Confirm password did not matched")
+    ], render_kw={"placeholder": "Retype the password"})
+    submit = SubmitField("Change Password")
