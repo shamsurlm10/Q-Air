@@ -74,14 +74,14 @@ def logout_user():
 @users.route("/forget_password", methods=["GET", "POST"])
 def forget_password():
     if current_user.is_authenticated:
-        return redirect(url_for('mains.homepage'))
+        return redirect(url_for('users.dashboard'))
     form = ForgetPasswordForm()
     if form.validate_on_submit():
         # Fetching the user
         user = User.query.filter_by(email=form.email.data).first()
         # Sending email
         send_mail(user.email, "Password Reset Token",
-                  password_reset_key_mail_body(user.id, user.get_reset_token(), int(os.getenv("EXPIRE_TIME"))))
+                  password_reset_key_mail_body(user.id, user.get_reset_token(), 1800))
         flash(f"Check your email to continue.", "primary")
         return redirect(url_for('users.login_user'))
     return render_template("users/forget_password.html", form=form)
@@ -89,7 +89,7 @@ def forget_password():
 @users.route("/reset_password/<int:id>/<string:token>", methods=["GET", "POST"])
 def reset_password(id: int, token: str):
     if current_user.is_authenticated:
-        return redirect(url_for('mains.homepage'))
+        return redirect(url_for('users.dashboard'))
     # Verifying the token
     veridication_result = User.verify_reset_key(
         id, token, int(os.getenv("EXPIRE_TIME")))

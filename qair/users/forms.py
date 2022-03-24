@@ -45,8 +45,8 @@ class LoginForm(FlaskForm):
 class ForgetPasswordForm(FlaskForm):
     email = EmailField("Email Address", validators=[
         DataRequired(), Length(min=4, max=150), Email()
-    ], render_kw={"placeholder": "Enter your associated email address"})
-    submit = SubmitField("Send Email")
+    ], render_kw={"placeholder": "Email"})
+    submit = SubmitField("Send")
 
     def validate_email(self, email: str):
         user = User.query.filter_by(email=email.data).first()
