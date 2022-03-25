@@ -37,9 +37,9 @@
                             {{form.password(class="form-control input-box", id="password")}}
                             {%endif%}
                         </div>
-                        <div class="mb-0 log-reg-text">
+                        <a href="{{url_for('users.forget_password')}}" class="mb-0 log-reg-text">
                             <strong>Forget Password</strong>
-                        </div>
+                        </a>
         
                         <div class="log-reg-text text-start">
                             {{ form.remember_me(class="form-check-input") }}

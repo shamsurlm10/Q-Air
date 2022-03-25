@@ -1,6 +1,6 @@
 .log-btn{
     background-color: #034C80;
-    width:80px; 
+    min-width: 80px;
     border-radius:0.3rem;
 }
 
