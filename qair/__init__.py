@@ -68,7 +68,7 @@ import qair.models
 # from flaskr.api.post import posts
 # from flaskr.api.reply import replies
 # from flaskr.events.routes import events
-# from flaskr.mains.routes import mains
+from qair.mains.routes import mains
 # from flaskr.notifications.routes import notifications
 # from flaskr.profiles.routes import profiles
 from qair.users.routes import users
@@ -76,7 +76,7 @@ from qair.users.routes import users
 # Registering blueprints
 app.register_blueprint(users)
 # app.register_blueprint(profiles)
-# app.register_blueprint(mains)
+app.register_blueprint(mains)
 # app.register_blueprint(admins)
 # app.register_blueprint(events)
 # app.register_blueprint(notifications)
