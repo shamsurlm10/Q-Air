@@ -4,7 +4,7 @@ from flask import (Blueprint, flash, redirect, render_template, request,
                    session, url_for)
 from qair.users.forms import RegisterForm, LoginForm, ResetPasswordForm
 from qair import bcrypt, db
-from qair.models import User
+from qair.models import User, Profile
 from flask_login import login_user as login_user_function, login_required, logout_user as logout_user_function, current_user
 from qair.users.utils import generate_token, password_reset_key_mail_body
 from qair.mails import send_mail
@@ -47,15 +47,18 @@ def register_user():
             form.password.data).decode("utf-8")
         hashed_token = bcrypt.generate_password_hash(
             generated_token_for_email).decode("utf-8")
-        user = User(form.email.data, hashed_password,
-                    form.full_name.data, form.passport.data)
+        user = User(form.email.data, hashed_password, hashed_token)
         db.session.add(user)
+        db.session.commit()
+        # Creating a Profile
+        profile = Profile(form.full_name.data, user.id)
+        db.session.add(profile)
         db.session.commit()
         # Sending email
         send_mail(user.email, "Email Verification Code",
                   f"Your Token is {generated_token_for_email}")
         fetched_user = User.query.filter_by(id=user.id).first()
-        flash(f"Account created for {user.full_name}", "success")
+        flash(f"Account created for {profile.full_name}", "success")
         return redirect(url_for("users.login_user"))
     return render_template("users/register.html", form=form)
 

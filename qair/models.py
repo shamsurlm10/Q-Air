@@ -15,21 +15,20 @@ def load_user(id):
 # Models
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
-    full_name = db.Column(db.String(50), nullable=False)
     email = db.Column(db.String(150), nullable=False, unique=True)
     password = db.Column(db.String, nullable=False)
     is_verified = db.Column(db.Boolean, default=False)
-    profile = db.relationship("Profile", backref="user")
+    verified_code = db.Column(db.String)
+    profile = db.relationship("Profile", backref="user", uselist=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
 
     def __init__(
-        self, email: str, password: str, full_name: str, passport: int
+        self, email: str, password: str, verified_code: str
     ) -> None:
         self.email = email
         self.password = password
-        self.full_name = full_name
-        self.passport = passport
+        self.verified_code = verified_code
 
 
     def get_joindate(self):
@@ -62,11 +61,10 @@ class User(db.Model, UserMixin):
     
 class Profile(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    dob = db.Column(db.DateTime, nullable=False)
-    gender = db.Column(db.String, nullable=False)
-    profile_photo = db.Column(
-        db.String, default="/images/default/ProfilePhotos/default.jpg"
-    )
+    full_name = db.Column(db.String(50), nullable=False)
+    dob = db.Column(db.DateTime)
+    gender = db.Column(db.String)
+    profile_photo = db.Column(db.String, default="/images/default/ProfilePhotos/default.jpg")
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     passport_no = db.Column(db.String(17))
     contact_no = db.Column(db.String(11))
@@ -75,6 +73,18 @@ class Profile(db.Model):
     # flight_bookmarks = db.Column(db.ARRAY(db.Integer), default=[])
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
+    
+    def __init__(
+        self,
+        full_name: str,
+        user_id: int,
+    ) -> None:
+        self.full_name = full_name
+        self.user_id = user_id
+    
+    def __str__(self) -> str:
+        return f'{self.full_name} {self.user_id}'
+    
 
 class Address(db.Model):
     id = db.Column(db.Integer, primary_key=True)
