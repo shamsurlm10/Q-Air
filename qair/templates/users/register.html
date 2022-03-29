@@ -27,18 +27,6 @@
                             {% endif %}
                         </div>
                         <div class="mb-3">
-                            {% if form.passport.errors %}
-                            {{ form.passport(class="form-control is-invalid")}}
-                            <div class="invalid-feedback">
-                                {% for error in form.passport.errors %}
-                                <span>{{ error }}</span>
-                                {% endfor %}
-                            </div>
-                            {% else %}
-                            {{ form.passport(class="form-control", id="passport") }}
-                            {% endif %}
-                        </div>
-                        <div class="mb-3">
                             {% if form.full_name.errors %}
                             {{ form.full_name(class="form-control is-invalid")}}
                             <div class="invalid-feedback">

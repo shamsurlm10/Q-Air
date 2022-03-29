@@ -10,9 +10,6 @@ class RegisterForm(FlaskForm):
         DataRequired(), Length(min=4, max=150)
     ], render_kw={"placeholder": "Email"})
     
-    passport = StringField("Passport", validators=[
-        DataRequired()], render_kw={"placeholder": "Passport Number"})
-    
     full_name = StringField("Full Name", validators=[
         DataRequired(), Length(max=40, min=2)
     ], render_kw={"placeholder": "Full Name"})
@@ -26,7 +23,8 @@ class RegisterForm(FlaskForm):
             "password", "Confirm password did not matched")
     ], render_kw={"placeholder": "Confirm Password"})
     
-    condition_check = BooleanField("Accept terms and conditions")
+    condition_check = BooleanField("Accept terms and conditions", validators=[
+        DataRequired()])
     
     submit = SubmitField("Register")
 
