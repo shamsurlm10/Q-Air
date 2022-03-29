@@ -1,4 +1,5 @@
 from datetime import datetime
+from email import message
 
 from flask_login import UserMixin
 from itsdangerous import TimedSerializer
@@ -15,10 +16,10 @@ def load_user(id):
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     full_name = db.Column(db.String(50), nullable=False)
-    passport = db.Column(db.Integer, nullable=False, unique=True)
     email = db.Column(db.String(150), nullable=False, unique=True)
     password = db.Column(db.String, nullable=False)
     is_verified = db.Column(db.Boolean, default=False)
+    profile = db.relationship("Profile", backref="user")
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
 
@@ -58,3 +59,58 @@ class User(db.Model, UserMixin):
                 "message": "Token is not valid for this user.",
             }
         return {"is_authenticate": True, "message": "Password successfully changed."}
+    
+class Profile(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    dob = db.Column(db.DateTime, nullable=False)
+    gender = db.Column(db.String, nullable=False)
+    profile_photo = db.Column(
+        db.String, default="/images/default/ProfilePhotos/default.jpg"
+    )
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
+    passport_no = db.Column(db.String(17))
+    contact_no = db.Column(db.String(11))
+    # notification = db.relationship("Notification", backref="profile")
+    address = db.relationship("Address", backref="profile")
+    # flight_bookmarks = db.Column(db.ARRAY(db.Integer), default=[])
+    created_at = db.Column(db.DateTime, default=datetime.utcnow())
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow())
+
+class Address(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    street = db.Column(db.String, nullable=False)
+    postal_code = db.Column(db.Integer, nullable=False)
+    profile_id = db.Column(db.Integer, db.ForeignKey("profile.id"))
+    country = db.Column(db.String, nullable=False)
+    city = db.Column(db.String, nullable=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow())
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow())
+
+# class Company(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     company_name = db.Column(db.String, nullable=False)
+#     logo = db.Column(
+#         db.String, default="/images/default/Logos/placeholder.png"
+#     )
+#     created_at = db.Column(db.DateTime, default=datetime.utcnow())
+#     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
+    
+# class CompanyRating(db.Model):
+#     company_id = db.Column(db.Integer, db.ForeignKey("comapany.id"))
+#     profile_id = db.Column(db.Integer, db.ForeignKey("profile.id"))
+#     message = db.Column(db.String(250), nullable=False)
+#     rating = db.Column(db.Integer(5))
+#     created_at = db.Column(db.DateTime, default=datetime.utcnow())
+#     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
+    
+# class Notification(db.Model, UserMixin):
+#     id = db.Column(db.Integer, primary_key=True)
+#     message = db.Column(db.String(250), nullable=False) 
+#     link = db.Column(db.String, nullable=False)
+#     profile_id = db.Column(db.Integer, db.ForeignKey("profile.id"))
+#     is_readed = db.Column(db.Boolean, default=False)
+#     created_at = db.Column(db.DateTime, default=datetime.utcnow())
+#     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
+    
+
+    
