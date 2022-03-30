@@ -1,10 +1,32 @@
 {% extends "profiles/account-settings-layout.html" %}
 {% block title %} Verify Email {% endblock %}
 
-{% block css%}
-<link rel="stylesheet" href="{{url_for('static', filename='style/profiles/....css')}}">
-{% endblock %}
-
 {% block sub_content %}
-<h1>Verify Email</h1>
+<div class="container form-brand mt-1">
+    <div class="row">
+        <div class="col-xl-6 offset-xl-3 col-md-8 offset-md-2 ps-5">
+            <div>
+                <div class="card card-r card-body shadow-card p-4">
+                  <form method="POST" class="my-5">
+                    {{ form.hidden_tag() }}
+                    <div class="mb-3">
+                        {% if form.token.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.token.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.token(class="form-control", id="dob") }}
+                        {% endif %}
+                    </div>
+                    <div class="mt-2">
+                        {{form.submit(class="btn btn-primary btn-sm mt-2 btn-update")}}
+                    </div>
+                  </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
