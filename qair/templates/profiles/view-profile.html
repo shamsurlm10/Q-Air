@@ -1,5 +1,9 @@
-{% extends "profiles/account-settings-layout.html" %}
+{% extends "base.html" %}
+{% block title %} View Profile {% endblock %}
 
-{% block sub_content %}
-<h1>ass</h1>
+{% block css%}
+<link rel="stylesheet" href="{{url_for('static', filename='style/profiles/view-profiles.css')}}">
+{% endblock %}
+{% block content %}
+<h1>View Profile</h1>
 {% endblock %}

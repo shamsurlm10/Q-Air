@@ -35,7 +35,7 @@ def change_profile_info():
         form.contact_no.data = current_user.profile.contact_no
     return render_template("profiles/edit-profile-info.html", active="edit-profile-info", form=form)
 
-@profiles.route("/change-photos", methods=["GET", "POST"])
+@profiles.route("/changew-photos", methods=["GET", "POST"])
 @login_required
 def change_photos():
     form = ChangePhoto()
@@ -101,7 +101,6 @@ def remove_cover_photo():
     else:
         flash("Cannot remove default cover photo.", "danger")
     return redirect(url_for("profiles.change_photos"))
-
 
 @profiles.route("/remove-profile-photo")
 @login_required

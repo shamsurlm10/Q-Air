@@ -37,10 +37,10 @@
                         </li>
                         {% else %}
                         <li>
-                            <a href="{{url_for('profiles.view_profile', id=1)}}"> <i class="fad fa-user"></i> <span style="margin-left:10px;">Profile</span> </a>
+                            <a href="{{url_for('profiles.view_profile', id=current_user.profile.id)}}"> <i class="fad fa-user"></i> <span style="margin-left:10px;">Profile</span> </a>
                         </li>
                         <li>
-                            <a href="#"> <i class="fad fa-user"></i> <span style="margin-left:10px;">Settings</span> </a>
+                            <a href="{{url_for('profiles.change_profile_info')}}"> <i class="fad fa-user"></i> <span style="margin-left:10px;">Settings</span> </a>
                         </li>
                         {% endif %}
 
