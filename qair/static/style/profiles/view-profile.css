@@ -1,0 +1,8 @@
+.profile-photo {
+    border: 1px solid #f5f4f4;
+    margin-top: -75px;
+    border-radius: 50%;
+    height: 150px;
+    width: 150px;
+    margin-left: 25px;
+}

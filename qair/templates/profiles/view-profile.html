@@ -1,9 +1,16 @@
 {% extends "base.html" %}
 {% block title %} View Profile {% endblock %}
-
-{% block css%}
-<link rel="stylesheet" href="{{url_for('static', filename='style/profiles/view-profiles.css')}}">
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static', filename='style/profiles/view-profile.css')}}">
 {% endblock %}
 {% block content %}
-<h1>View Profile</h1>
+<div class="container mt-1">
+    <img src="{{ url_for('static', filename='image/default/CoverPhotos/default.png') }}" alt="Cover photo" class="cover-photo">
+    <div class="d-flex-custom">
+        <div class="flex-shrink-1 profile-photo-container d-flex">
+            <img src="{{ url_for('static', filename=profile.profile_photo) }}" alt="Profile Photo"
+                class="profile-photo flex-grow-1">
+        </div>
+    </div>
+</div>
 {% endblock %}
