@@ -64,12 +64,12 @@ class Profile(db.Model):
     full_name = db.Column(db.String(50), nullable=False)
     dob = db.Column(db.DateTime)
     gender = db.Column(db.String)
-    profile_photo = db.Column(db.String, default="/images/default/ProfilePhotos/default.jpg")
+    profile_photo = db.Column(db.String, default="/image/default/ProfilePhotos/default.jpg")
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     passport_no = db.Column(db.String(17))
     contact_no = db.Column(db.String(11))
     # notification = db.relationship("Notification", backref="profile")
-    address = db.relationship("Address", backref="profile")
+    address = db.relationship("Address", backref="profile", uselist=False)
     # flight_bookmarks = db.Column(db.ARRAY(db.Integer), default=[])
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
@@ -88,13 +88,19 @@ class Profile(db.Model):
 
 class Address(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    street = db.Column(db.String, nullable=False)
-    postal_code = db.Column(db.Integer, nullable=False)
+    street = db.Column(db.String)
+    postal_code = db.Column(db.Integer)
     profile_id = db.Column(db.Integer, db.ForeignKey("profile.id"))
-    country = db.Column(db.String, nullable=False)
-    city = db.Column(db.String, nullable=False)
+    country = db.Column(db.String)
+    city = db.Column(db.String)
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
+    
+    def __init__(
+        self,
+        profile_id: int,
+    ) -> None:
+        self.profile_id = profile_id
 
 # class Company(db.Model):
 #     id = db.Column(db.Integer, primary_key=True)

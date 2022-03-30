@@ -54,6 +54,50 @@
                         {{ form.contact_no(class="form-control", id="contact_no") }}
                         {% endif %}
                     </div>
+                    <div class="mb-3">
+                        {% if form.street.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.street.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.street(class="form-control", id="street") }}
+                        {% endif %}
+                    </div>
+                    <div class="mb-3">
+                        {% if form.postal_code.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.postal_code.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.postal_code(class="form-control", id="street") }}
+                        {% endif %}
+                    </div>
+                    <div class="mb-3">
+                        {% if form.city.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.city.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.city(class="form-control", id="street") }}
+                        {% endif %}
+                    </div>
+                    <div class="mb-3">
+                        {% if form.country.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.country.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.country(class="form-control", id="street") }}
+                        {% endif %}
+                    </div>
                     <div class="mt-2">
                         {{form.update(class="btn btn-primary btn-sm mt-2 btn-update")}}
                     </div>

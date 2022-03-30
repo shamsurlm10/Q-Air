@@ -25,6 +25,10 @@ def change_profile_info():
         current_user.profile.dob = form.dob.data
         current_user.profile.passport_no = form.passport_no.data
         current_user.profile.contact_no = form.contact_no.data
+        current_user.profile.address.city = form.city.data
+        current_user.profile.address.country = form.country.data
+        current_user.profile.address.postal_code = form.postal_code.data
+        current_user.profile.address.street = form.street.data
         db.session.commit()
         flash("Profile information updated successfully.", "success")
         return redirect(url_for("profiles.change_profile_info"))
@@ -33,6 +37,10 @@ def change_profile_info():
         form.dob.data = current_user.profile.dob
         form.passport_no.data = current_user.profile.passport_no
         form.contact_no.data = current_user.profile.contact_no
+        form.city.data = current_user.profile.address.city
+        form.country.data = current_user.profile.address.country
+        form.postal_code.data = current_user.profile.address.postal_code
+        form.street.data = current_user.profile.address.street
     return render_template("profiles/edit-profile-info.html", active="edit-profile-info", form=form)
 
 @profiles.route("/changew-photos", methods=["GET", "POST"])
@@ -43,22 +51,12 @@ def change_photos():
         if form.profile_photo.data:
             # deleting
             file_path = current_user.profile.profile_photo
-            if not ("/images/default/ProfilePhotos/default.png" in file_path):
+            if not ("/image/default/ProfilePhotos/default.jpg" in file_path):
                 remove_photo(file_path)
             # saving
             photo_file = save_photos(
                 form.profile_photo.data, current_user.id, "profile", 250, 250)
-            current_user.profile.profile_photo = "/images/uploads/profile/" + photo_file
-            db.session.commit()
-        if form.cover_photo.data:
-            # deleting
-            file_path = current_user.profile.cover_photo
-            if not ("/images/default/CoverPhotos/default.png" in file_path):
-                remove_photo(file_path)
-            # saving
-            photo_file = save_photos(
-                form.cover_photo.data, current_user.id, "cover", 1040, 260)
-            current_user.profile.cover_photo = "/images/uploads/cover/" + photo_file
+            current_user.profile.profile_photo = "/image/uploads/profile/" + photo_file
             db.session.commit()
     return render_template("profiles/change-photos.html", active="change-photos", form=form)
 
@@ -90,24 +88,12 @@ def change_password():
         return redirect(url_for("profiles.change_password"))
     return render_template("profiles/change-password.html", active="change-password", form=form)
 
-@profiles.route("/remove-cover-photo")
-@login_required
-def remove_cover_photo():
-    if not ("/images/default/CoverPhotos/default.png" in current_user.profile.cover_photo):
-        remove_photo(current_user.profile.cover_photo)
-        current_user.profile.cover_photo = "/images/default/CoverPhotos/default.png"
-        db.session.commit()
-        flash("Cover photo removed.", "success")
-    else:
-        flash("Cannot remove default cover photo.", "danger")
-    return redirect(url_for("profiles.change_photos"))
-
 @profiles.route("/remove-profile-photo")
 @login_required
 def remove_profile_photo():
-    if not ("/images/default/ProfilePhotos/default.png" in current_user.profile.profile_photo):
+    if not ("/image/default/ProfilePhotos/default.jpg" in current_user.profile.profile_photo):
         remove_photo(current_user.profile.profile_photo)
-        current_user.profile.profile_photo = "/images/default/ProfilePhotos/default.png"
+        current_user.profile.profile_photo = "/image/default/ProfilePhotos/default.jpg"
         db.session.commit()
         flash("Profile photo removed.", "success")
     else:

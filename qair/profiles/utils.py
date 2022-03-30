@@ -39,7 +39,7 @@ def save_photos(photo, id: int, folder_name: str, width: int, height: int):
     _, file_ext = os.path.splitext(photo.filename)
     photo_filename = random_hex + str(id) + file_ext
     photo_path = os.path.join(app.root_path,
-                              f"static/images/uploads/{folder_name}/" + photo_filename)
+                              f"static/image/uploads/{folder_name}/" + photo_filename)
 
     image = Image.open(photo)
 
