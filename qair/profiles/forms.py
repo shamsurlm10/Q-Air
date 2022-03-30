@@ -11,16 +11,17 @@ from wtforms.validators import (URL, DataRequired, EqualTo, Length, Optional,
 
 class ProfileInfoForm(FlaskForm):
     full_name = StringField("Full Name", validators=[
-        DataRequired(), Length(max=30, min=2)
+        DataRequired(), Length(max=40, min=2)
     ], render_kw={"placeholder": "Full Name"})
-    dob = DateField("Date of Birth")
+    dob = DateField("Date of Birth", validators=[
+        DataRequired()])
     passport_no = StringField("Passport Number", validators=[
         Length(max=17)
     ], render_kw={"placeholder": "Passport Number"})
     contact_no = StringField("Contact Number", validators=[
         Length(max=11)
     ], render_kw={"placeholder": "Contact Number"})
-    save = SubmitField("Update")
+    update = SubmitField("Update")
 
 class ChangePhoto(FlaskForm):
     cover_photo = FileField("Cover Photo", validators=[
