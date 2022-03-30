@@ -68,4 +68,4 @@ class VerifyEmailForm(FlaskForm):
     token = StringField("Verification Token", validators=[
         DataRequired(), Length(max=6)
     ], render_kw={"placeholder": "Enter your verification token here..."})
-    save = SubmitField("Update")
+    submit = SubmitField("Submit")
