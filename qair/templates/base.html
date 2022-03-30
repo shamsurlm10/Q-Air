@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="{{url_for('static', filename='style/base/base.css')}}">
     {% block css%}{% endblock %}
 </head>
+
 <body>
     <div class="container-fluid">
         <div class="row">
@@ -31,13 +32,18 @@
                         </li>
                         {% if not current_user.is_authenticated %}
                         <li>
-                            <a href="{{url_for('users.login_user')}}"><i class="fa-solid fa-circle-user"></i></i><span style="margin-left:10px;">Sign in</span></a>
+                            <a href="{{url_for('users.login_user')}}"><i class="fa-solid fa-circle-user"></i></i><span
+                                    style="margin-left:10px;">Sign in</span></a>
+                        </li>
+                        {% else %}
+                        <li>
+                            <a href="{{url_for('profiles.view_profile', id=1)}}"> <i class="fad fa-user"></i> <span style="margin-left:10px;">Profile</span> </a>
+                        </li>
+                        <li>
+                            <a href="#"> <i class="fad fa-user"></i> <span style="margin-left:10px;">Settings</span> </a>
                         </li>
                         {% endif %}
-                        <li>
-                            <a href="#"> <i class="fa fa-play-circle-o" aria-hidden="true"> </i> <span
-                                    style="margin-left:10px;"> Section</span> </a>
-                        </li>
+
                         <li>
                             <a href="#"> <i class="fa fa-puzzle-piece" aria-hidden="true"> </i> <span
                                     style="margin-left:10px;"> Section</span> </a>
@@ -52,7 +58,8 @@
                         </li>
                         {% if current_user.is_authenticated %}
                         <li>
-                            <a href="{{url_for('users.logout_user')}}"><i class="fa-solid fa-right-to-bracket"></i><span style="margin-left:10px;"> Logout</span></a>
+                            <a href="{{url_for('users.logout_user')}}"><i class="fa-solid fa-right-to-bracket"></i><span
+                                    style="margin-left:10px;"> Logout</span></a>
                         </li>
                         {% endif %}
                     </ul>
@@ -112,4 +119,5 @@
         </div>
     </div>
 </body>
+
 </html>

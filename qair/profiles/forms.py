@@ -49,3 +49,9 @@ class ChangePasswordForm(FlaskForm):
         user = User.query.get(current_user.id)
         if not bcrypt.check_password_hash(user.password, old_password.data):
             raise ValidationError("Password did not matched.")
+        
+class VerifyEmailForm(FlaskForm):
+    token = StringField("Verification Token", validators=[
+        DataRequired(), Length(max=6)
+    ], render_kw={"placeholder": "Enter your verification token here..."})
+    save = SubmitField("Update")
