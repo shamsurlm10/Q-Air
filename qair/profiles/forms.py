@@ -21,6 +21,19 @@ class ProfileInfoForm(FlaskForm):
     contact_no = StringField("Contact Number", validators=[
         Length(max=11)
     ], render_kw={"placeholder": "Contact Number"})
+    street = StringField("Street", validators=[
+        Length(max=17)
+    ], render_kw={"placeholder": "Street Address."})
+    postal_code = StringField("Postal Code", validators=[
+        Length(max=17)
+    ], render_kw={"placeholder": "Postal Code"})
+    city = StringField("City", validators=[
+        Length(max=10)
+    ], render_kw={"placeholder": "City"})
+    country = StringField("Country", validators=[
+        Length(max=17)
+    ], render_kw={"placeholder": "Country Name"})
+    
     update = SubmitField("Update")
 
 class ChangePhoto(FlaskForm):

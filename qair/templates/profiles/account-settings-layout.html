@@ -8,11 +8,11 @@
 {% block content %}
 
     <div class="all-btns">
-        <button class="menu-btns btn-light" type="button">Edit Profile</button>
-        <button class="menu-btns btn-light mx-1" type="button">Change Photos</button>
-        <button class="menu-btns btn-light mx-1" type="button">Change Password</button>
-        <button class="menu-btns btn-light mx-1" type="button">Verify Email</button>
-        <button class="menu-btns btn-light mx-1" type="button">Deactivate Account</button>
+        <a href="{{url_for('profiles.change_profile_info')}}"><button class="menu-btns btn-light" type="button">Edit Profile</button></a>
+        <a href="{{url_for('profiles.change_photos')}}"><button class="menu-btns btn-light mx-1" type="button">Change Photos</button></a>
+        <a href="{{url_for('profiles.change_profile_info')}}"><button class="menu-btns btn-light mx-1" type="button">Change Password</button></a>
+        <a href="{{url_for('profiles.change_profile_info')}}"><button class="menu-btns btn-light mx-1" type="button">Verify Email</button></a>
+        <a href="{{url_for('profiles.change_profile_info')}}"><button class="menu-btns btn-light mx-1" type="button">Deactivate Account</button></a>
     </div>
 
 {% block sub_content %}
