@@ -1,15 +1,22 @@
 {% extends "base.html" %}
-{% block title %} View Profile {% endblock %}
+{% block title %} Account Setting {% endblock %}
 
 {% block css%}
-<link rel="stylesheet" href="{{url_for('static', filename='style/profiles/...css')}}">
+<link rel="stylesheet" href="{{url_for('static', filename='style/profiles/account-setting-layout.css')}}">
 {% endblock %}
 
 {% block content %}
 
-<h1>Here all the settings button</h1>
+    <div class="all-btns">
+        <button class="menu-btns btn-light" type="button">Edit Profile</button>
+        <button class="menu-btns btn-light mx-1" type="button">Change Photos</button>
+        <button class="menu-btns btn-light mx-1" type="button">Change Password</button>
+        <button class="menu-btns btn-light mx-1" type="button">Verify Email</button>
+        <button class="menu-btns btn-light mx-1" type="button">Deactivate Account</button>
+    </div>
 
 {% block sub_content %}
+
 {% endblock %}
 
 {% endblock %}

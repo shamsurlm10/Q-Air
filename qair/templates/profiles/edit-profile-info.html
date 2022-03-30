@@ -1,10 +1,66 @@
 {% extends "profiles/account-settings-layout.html" %}
-{% block title %} Edit Profile Info {% endblock %}
-
-{% block css%}
-<link rel="stylesheet" href="{{url_for('static', filename='style/profiles/...css')}}">
-{% endblock %}
 
 {% block sub_content %}
-<h1>Edit Profile Info</h1>
+<div class="container form-brand mt-1">
+    <div class="row">
+        <div class="col-xl-6 offset-xl-3 col-md-8 offset-md-2 ps-5">
+            <div>
+                <div class="card card-r card-body shadow-card p-4">
+                  <form method="POST" class="my-5">
+                    {{ form.hidden_tag() }}
+                    <div class="mb-3">
+                        {% if form.full_name.errors %}
+                        {{ form.full_name(class="form-control is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in form.full_name.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.full_name(class="form-control", id="full_name") }}
+                        {% endif %}
+                    </div>
+                    <div class="mb-3">
+                        {% if form.dob.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.dob.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.dob(class="form-control", id="dob") }}
+                        {% endif %}
+                    </div>
+                    <div class="mb-3">
+                        {% if form.passport_no.errors %}
+                        {{ form.passport_no(class="form-control is-invalid")}}
+                        <div class="invalid-feedback">
+                            {% for error in form.passport_no.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.passport_no(class="form-control", id="passport_no") }}
+                        {% endif %}
+                    </div>
+                    <div class="mb-3">
+                        {% if form.contact_no.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.contact_no.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.contact_no(class="form-control", id="contact_no") }}
+                        {% endif %}
+                    </div>
+                    <div class="mt-2">
+                        {{form.update(class="btn btn-primary btn-sm mt-2 btn-update")}}
+                    </div>
+                  </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}

@@ -1,0 +1,32 @@
+.all-btns{
+    text-align: center;
+    height: 20vh;
+    width: 100%;
+    margin-top: 70px;
+}
+
+.menu-btns{
+    width: 170px;
+    height: 40px;
+    text-align: center;
+    text-decoration: none;
+    color: #034C80; 
+    border: none;  
+}
+.menu-btns:hover {
+    background-color: #034C80;
+    color: #FFFFFF;
+  }
+  .card-r{
+    width:400px; 
+    border:2px; 
+    background-color:#f1f1f1;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    align-items: center;
+}
+.btn-update{
+    background-color: #034C80;
+    min-width: 80px;
+    border-radius:0.3rem;
+}
