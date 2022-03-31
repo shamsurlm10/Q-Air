@@ -25,10 +25,19 @@
     border-radius: 10px;
     align-items: center;
 }
-.btn-update{
+.btn-update, .btn-delete{
     background-color: #034C80;
     min-width: 80px;
     border-radius:0.3rem;
+}
+.btn-delete{
+    background-color: crimson;
+    color: #f1f1f1;
+    min-width: 80px;
+    border-radius:0.3rem;
+}
+.btn-delete:hover {
+    color: #f1f1f1;
 }
 .cover-photo {
     height: 210px;

@@ -18,6 +18,7 @@ def login_user():
     if current_user.is_authenticated:
         return redirect(url_for('users.dashboard'))
     form = LoginForm()
+    status_code = 200
     if form.validate_on_submit():
         # Fetching the user
         fetched_user = User.query.filter_by(email=form.email.data).first()
@@ -28,10 +29,11 @@ def login_user():
             response = redirect(next_page) if next_page else redirect(
                 url_for('users.dashboard'))
             flash("Login Successfull.", "success")
-            return response
+            return response, 201
         else:
             flash("Login Failed! Please Check Email and Password.", "danger")
-    return render_template("users/login.html", form=form)
+            status_code = 401
+    return render_template("users/login.html", form=form), status_code
 
 
 @users.route("/register", methods=["GET", "POST"])

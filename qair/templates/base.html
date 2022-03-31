@@ -12,7 +12,7 @@
         integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <!-- forn awesome -->
-    <script src="https://kit.fontawesome.com/35cf54e419.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/ede93de2c9.js" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="{{url_for('static', filename='style/base/base.css')}}">
     {% block css%}{% endblock %}
@@ -37,10 +37,10 @@
                         </li>
                         {% else %}
                         <li>
-                            <a href="{{url_for('profiles.view_profile', id=current_user.profile.id)}}"> <i class="fad fa-user"></i> <span style="margin-left:10px;">Profile</span> </a>
+                            <a href="{{url_for('profiles.view_profile', id=current_user.profile.id)}}"><i class="fa-solid fa-user-large"></i><span style="margin-left:10px;">Profile</span> </a>
                         </li>
                         <li>
-                            <a href="{{url_for('profiles.change_profile_info')}}"> <i class="fad fa-user"></i> <span style="margin-left:10px;">Settings</span> </a>
+                            <a href="{{url_for('profiles.change_profile_info')}}"> <i class="fa-solid fa-gear"></i><span style="margin-left:10px;">Settings</span> </a>
                         </li>
                         {% endif %}
 
@@ -58,8 +58,7 @@
                         </li>
                         {% if current_user.is_authenticated %}
                         <li>
-                            <a href="{{url_for('users.logout_user')}}"><i class="fa-solid fa-right-to-bracket"></i><span
-                                    style="margin-left:10px;"> Logout</span></a>
+                            <a href="{{url_for('users.logout_user')}}"><i class="fa-solid fa-arrow-right-from-bracket"></i><span style="margin-left:10px;"> Logout</span></a>
                         </li>
                         {% endif %}
                     </ul>
@@ -98,8 +97,8 @@
                             <div
                                 class="toast-header align-items-center bg-{{ category }} text-{{ 'light' if category != 'info' and category != 'warning' else 'dark' }}">
                                 <p class="me-auto my-0">{{ "Q-Air" }}</p>
-                                <small class="me-2">Message</small>
-                                <button type="button" class="m-0 btn btn-sm btn-{{ category }}" data-bs-dismiss="toast"
+                                <small class="me-2">Message</
+                                small><button type="button" class="m-0 btn btn-sm btn-{{ category }}" data-bs-dismiss="toast"
                                     aria-label="Close">
                                     <i class="fas fa-times"></i>
                                 </button>
