@@ -4,7 +4,7 @@ from flask_wtf.file import FileAllowed, FileField
 from qair import bcrypt
 from qair.models import User
 from wtforms import (DateField, PasswordField, StringField, SubmitField,
-                     TextAreaField)
+                     IntegerField)
 from wtforms.validators import (URL, DataRequired, EqualTo, Length, Optional,
                                 ValidationError)
 
@@ -23,10 +23,8 @@ class ProfileInfoForm(FlaskForm):
     ], render_kw={"placeholder": "Contact Number"})
     street = StringField("Street", validators=[
         Length(max=17)
-    ], render_kw={"placeholder": "Street Address."})
-    postal_code = StringField("Postal Code", validators=[
-        Length(max=17)
-    ], render_kw={"placeholder": "Postal Code"})
+    ], render_kw={"placeholder": "Street Address"})
+    postal_code = IntegerField("Postal Code", render_kw={"placeholder": "Postal Code"})
     city = StringField("City", validators=[
         Length(max=10)
     ], render_kw={"placeholder": "City"})

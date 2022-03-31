@@ -27,7 +27,10 @@ def change_profile_info():
         current_user.profile.contact_no = form.contact_no.data
         current_user.profile.address.city = form.city.data
         current_user.profile.address.country = form.country.data
-        current_user.profile.address.postal_code = form.postal_code.data
+        try:
+            current_user.profile.address.postal_code = int(form.postal_code.data)
+        except:
+            raise ValueError('Postal code casting error')
         current_user.profile.address.street = form.street.data
         db.session.commit()
         flash("Profile information updated successfully.", "success")
