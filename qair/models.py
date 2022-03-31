@@ -82,6 +82,9 @@ class Profile(db.Model):
         self.full_name = full_name
         self.user_id = user_id
     
+    def getDateOfBirth(self):
+        return self.dob.strftime("%d %B, %Y")
+    
     def __str__(self) -> str:
         return f'{self.full_name} {self.user_id}'
     

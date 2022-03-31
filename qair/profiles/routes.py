@@ -68,6 +68,9 @@ def change_photos():
 def verify_email():
     form = VerifyEmailForm()
     if form.validate_on_submit():
+        if current_user.is_verified:
+            flash('User already verified.', 'danger')
+            return redirect(url_for("profiles.verify_email"))
         if not bcrypt.check_password_hash(current_user.verified_code, form.token.data):
             flash("Token did not matched!", "danger")
         else:
