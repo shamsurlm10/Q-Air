@@ -63,7 +63,7 @@ mail = Mail(app)
 
 import qair.models
 
-# from flaskr.admins.routes import admins
+from qair.admins.routes import admins
 # from flaskr.api.comment import comments
 # from flaskr.api.post import posts
 # from flaskr.api.reply import replies
@@ -77,7 +77,7 @@ from qair.users.routes import users
 app.register_blueprint(users)
 app.register_blueprint(profiles)
 app.register_blueprint(mains)
-# app.register_blueprint(admins)
+app.register_blueprint(admins)
 # app.register_blueprint(events)
 # app.register_blueprint(notifications)
 # app.register_blueprint(posts)

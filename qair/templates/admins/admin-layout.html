@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %} Admin Setting {% endblock %}
+
+{% block css%}
+<link rel="stylesheet" href="{{url_for('static', filename='style/profiles/account-setting-layout.css')}}">
+{% endblock %}
+
+{% block content %}
+
+    <div class="all-btns">
+        <a href="{{url_for('admins.dashboard')}}"><button class="menu-btns btn-light" type="button">Dashboard</button></a>
+        <a href="{{url_for('admins.pending_request')}}"><button class="menu-btns btn-light mx-1" type="button">Pending Request</button></a>
+        <a href="{{url_for('admins.view_company')}}"><button class="menu-btns btn-light mx-1" type="button">View Company</button></a>
+        <a href="{{url_for('admins.search_by_id')}}"><button class="menu-btns btn-light mx-1" type="button">Search by ID</button></a>
+        <a href="{{url_for('admins.banned_users')}}"><button class="menu-btns btn-light mx-1" type="button">Banned Users</button></a>
+    </div>
+
+{% block sub_content %}
+
+{% endblock %}
+
+{% endblock %}
