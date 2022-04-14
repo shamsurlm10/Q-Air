@@ -65,6 +65,9 @@ class Profile(db.Model):
     dob = db.Column(db.DateTime)
     gender = db.Column(db.String)
     profile_photo = db.Column(db.String, default="/image/default/ProfilePhotos/default.jpg")
+    cover_photo = db.Column(
+        db.String, default="/image/default/CoverPhotos/default.png"
+    )
     user_id = db.Column(db.Integer, db.ForeignKey("user.id"))
     passport_no = db.Column(db.String(17))
     contact_no = db.Column(db.String(11))

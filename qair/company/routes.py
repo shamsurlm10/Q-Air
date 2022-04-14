@@ -4,6 +4,16 @@ from flask_login import current_user, login_required
 
 company = Blueprint("company", __name__, url_prefix="/company")
 
+@company.route("/view-flight")
+@login_required
+def view_flight():
+    return render_template("company/view-flight.html")
+
+@company.route("/create-company")
+@login_required
+def create_company():
+    return render_template("company/create-company.html")
+
 @company.route("/")
 @company.route("/dashboard")
 @login_required
@@ -34,8 +44,3 @@ def create_flight():
 @login_required
 def edit_flight():
     return render_template("company/edit-flight.html")
-
-@company.route("/view-flight")
-@login_required
-def view_flight():
-    return render_template("company/view-flight.html")
