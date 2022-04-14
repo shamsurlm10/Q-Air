@@ -19,3 +19,23 @@ def add_planes():
 @login_required
 def edit_planes():
     return render_template("company/edit-planes.html")
+
+@company.route("/edit-company")
+@login_required
+def edit_comapny():
+    return render_template("company/edit-company.html")
+
+@company.route("/create-flight")
+@login_required
+def create_flight():
+    return render_template("company/create-flight.html")
+
+@company.route("/edit-flight")
+@login_required
+def edit_flight():
+    return render_template("company/edit-flight.html")
+
+@company.route("/view-flight")
+@login_required
+def view_flight():
+    return render_template("company/view-flight.html")
