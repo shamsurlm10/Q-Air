@@ -1,0 +1,34 @@
+.btn-noti{
+    color: #FBFBFB;
+    background-color: #034C80;
+    width: 80px;
+    border: none;
+    border-radius: 5px;
+}
+.card-size{
+    border-radius: 10px;
+    height: 80px;
+}
+.card-notification{
+    width:600px; 
+    border:2px; 
+    background-color:#f1f1f1;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+   
+}
+.sm-text{
+    font-size: 13px;
+}
+.read-inner-box{
+    background-color: #034C80;
+}
+.unread-text-color{
+    background-color: #FBFBFB;
+}
+.unread-inner-box{
+    background-color: #FBFBFB;
+}
+.read-text-color{
+    background-color: #034C80;
+}
