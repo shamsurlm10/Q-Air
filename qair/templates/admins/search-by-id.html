@@ -3,5 +3,38 @@
 
 
 {% block sub_content %}
-search by id
-{% endblock %}
+<div class="container form-brand mt-1 mb-2">
+    <div class="row">
+        <div class="col-xl-6 offset-xl-3 col-md-8 offset-md-2 ps-5">
+            <div>
+                <div class="card card-r card-body shadow-card p-4">
+                    <div class="text-color mb-1">Search</div>
+                    <div class="mt-2">
+                        <div class="d-flex">
+                            <input class="form-control me-2 input-box" type="text" placeholder="Enter the Company ID"
+                                name="">
+                            <button class="btn-get" type="submit">Get</button>
+                        </div>
+                        <div class="d-flex mt-4">
+                            <input class="form-control me-2 input-box" type="text" placeholder="Enter the user ID"
+                                name="">
+                            <button class="btn-get" type="submit">Get</button>
+                        </div>
+                        <div class="d-flex mt-4">
+                            <input class="form-control me-2 input-box" type="text" placeholder="Enter the Flight ID"
+                                name="">
+                            <button class="btn-get" type="submit">Get</button>
+                        </div>
+                        <div class="d-flex mt-4">
+                            <input class="form-control me-2 input-box" type="text" placeholder="Enter the Airplane ID"
+                                name="">
+                            <button class="btn-get" type="submit">Get</button>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}

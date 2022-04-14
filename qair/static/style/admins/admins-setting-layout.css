@@ -1,6 +1,6 @@
 .all-btns{
     text-align: center;
-    height: 20vh;
+    height: 10vh;
     width: 100%;
     margin-top: 70px;
 }
@@ -18,71 +18,49 @@
     color: #FFFFFF;
   }
   .card-r{
-    width:500px; 
+    width:600px; 
     border:2px; 
     background-color:#f1f1f1;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
     border-radius: 10px;
-    align-items: center;
+   
 }
-.btn-update, .btn-delete{
-    background-color: #034C80;
-    min-width: 80px;
-    border-radius:0.3rem;
+.text-color{
+    color: #034C80; 
 }
-.btn-delete{
-    background-color: crimson;
-    color: #f1f1f1;
-    min-width: 80px;
-    border-radius:0.3rem;
+.sm-text{
+    font-size: 10px;
 }
-.btn-delete:hover {
-    color: #f1f1f1;
+.text-big{
+    font-size: 30px;
 }
-.cover-photo {
-    height: 210px;
-    width: 100%;
+
+.img-size{
+    height: 65px;
+    width: 65px;
+    border-radius: 100px;
+}
+.img-size-com{
+    height: 70px;
+    width: 60px;
+    border-radius: 100px;
+}
+.card-deg{
     border-radius: 10px;
+    height: 90px;
 }
-
-.profile-photo {
-    height: 200px;
-    width: 200px;
-    border: 2px solid #f5f4f4;
+.btn-get{
+    color: #FBFBFB;
+    background-color: #034C80;
+    width: 80px;
+    border: none;
+    border-radius: 5px;
+    
 }
-
-@media only screen and (max-width: 992px) {
-    .cover-photo {
-        height: 180px;
-    }
-}
-.card-link {
-    border: 0;
-    background-color: #fbfbfb;
-    color: #101010;
-}
-.system-status {
-    font-weight: bold;
-    color: #101010;
-}
-.card-details {
-    font-weight: bold;
-    font-size: 2.4rem;
-    color: #101010;
-}
-.card-link:hover {
-    color: #101010;
-}
-.card-link-a {
-    text-decoration: none;
-}
-.btn-search {
-    min-width: 200px;
-}
-.btn-search:hover {
-   color: #569cdc
-}
-.user-font {
-    font-weight: bold;
-    font-size: 1.2rem;
+.btn-unbanned{
+    color: #FBFBFB;
+    background-color: #034C80;
+    width: 80px;
+    border: none;
+    border-radius: 5px;
 }
