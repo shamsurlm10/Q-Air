@@ -105,3 +105,13 @@ def remove_profile_photo():
     else:
         flash("Cannot remove default profile photo.", "danger")
     return redirect(url_for("profiles.change_photos"))
+
+@profiles.route("/payment")
+@login_required
+def payment():
+    return render_template("profiles/payment.html")
+
+@profiles.route("/view-flight")
+@login_required
+def view_flight():
+    return render_template("profiles/view-flight.html")
