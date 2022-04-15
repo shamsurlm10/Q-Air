@@ -122,14 +122,13 @@ class Address(db.Model):
 #     created_at = db.Column(db.DateTime, default=datetime.utcnow())
 #     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
     
-# class Notification(db.Model, UserMixin):
-#     id = db.Column(db.Integer, primary_key=True)
-#     message = db.Column(db.String(250), nullable=False) 
-#     link = db.Column(db.String, nullable=False)
-#     profile_id = db.Column(db.Integer, db.ForeignKey("profile.id"))
-#     is_readed = db.Column(db.Boolean, default=False)
-#     created_at = db.Column(db.DateTime, default=datetime.utcnow())
-#     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
-    
+class Notification(db.Model, UserMixin):
+    id = db.Column(db.Integer, primary_key=True)
+    message = db.Column(db.String(250), nullable=False) 
+    link = db.Column(db.String, nullable=False)
+    profile_id = db.Column(db.Integer, db.ForeignKey("profile.id"))
+    is_readed = db.Column(db.Boolean, default=False)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow())
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow())
 
     
