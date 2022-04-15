@@ -7,10 +7,9 @@
 }
 .card-size{
     border-radius: 10px;
-    height: 80px;
 }
 .card-notification{
-    width:600px; 
+    width:100%; 
     border:2px; 
     background-color:#f1f1f1;
     box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
@@ -24,11 +23,11 @@
     background-color: #034C80;
 }
 .unread-text-color{
-    background-color: #FBFBFB;
+    color: #FBFBFB;
 }
 .unread-inner-box{
     background-color: #FBFBFB;
 }
 .read-text-color{
-    background-color: #034C80;
+    color: #034C80;
 }
