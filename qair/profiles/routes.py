@@ -61,6 +61,16 @@ def change_photos():
                 form.profile_photo.data, current_user.id, "profile", 250, 250)
             current_user.profile.profile_photo = "/image/uploads/profile/" + photo_file
             db.session.commit()
+        if form.cover_photo.data:
+            # deleting
+            file_path = current_user.profile.cover_photo
+            if not ("/image/default/CoverPhotos/default.png" in file_path):
+                remove_photo(file_path)
+            # saving
+            photo_file = save_photos(
+                form.cover_photo.data, current_user.id, "cover", 1040, 260)
+            current_user.profile.cover_photo = "/image/uploads/cover/" + photo_file
+            db.session.commit()
     return render_template("profiles/change-photos.html", active="change-photos", form=form)
 
 @profiles.route("/verify-email", methods=["GET", "POST"])
@@ -104,6 +114,18 @@ def remove_profile_photo():
         flash("Profile photo removed.", "success")
     else:
         flash("Cannot remove default profile photo.", "danger")
+    return redirect(url_for("profiles.change_photos"))
+
+@profiles.route("/settings/remove-cover-photo")
+@login_required
+def remove_cover_photo():
+    if not ("/image/default/CoverPhotos/default.png" in current_user.profile.cover_photo):
+        remove_photo(current_user.profile.cover_photo)
+        current_user.profile.cover_photo = "/image/default/CoverPhotos/default.png"
+        db.session.commit()
+        flash("Cover photo removed.", "success")
+    else:
+        flash("Cannot remove default cover photo.", "danger")
     return redirect(url_for("profiles.change_photos"))
 
 @profiles.route("/payment")
