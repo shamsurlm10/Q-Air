@@ -31,7 +31,7 @@
     border-radius: 10px;
 }
 .text-color{
-    background-color: #034C80;
+    color: #034C80;
 }
 .btn-get{
     color: #FBFBFB;
@@ -39,7 +39,7 @@
     width: 80px;
     border: none;
     border-radius: 5px;
-    
+    padding: 5px 10px;
 }
 
 .btn-del{
@@ -48,5 +48,6 @@
     width: 80px;
     border: none;
     border-radius: 5px;
+    padding: 5px 10px;
     
 }
