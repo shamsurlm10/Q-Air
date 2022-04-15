@@ -108,31 +108,6 @@ class Address(db.Model):
     ) -> None:
         self.profile_id = profile_id
 
-# class Company(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     company_name = db.Column(db.String, nullable=False)
-#     logo = db.Column(
-#         db.String, default="/images/default/Logos/placeholder.png"
-#     )
-#     created_at = db.Column(db.DateTime, default=datetime.utcnow())
-#     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
-    
-# class CompanyRating(db.Model):
-#     company_id = db.Column(db.Integer, db.ForeignKey("comapany.id"))
-#     profile_id = db.Column(db.Integer, db.ForeignKey("profile.id"))
-#     message = db.Column(db.String(250), nullable=False)
-#     rating = db.Column(db.Integer(5))
-#     created_at = db.Column(db.DateTime, default=datetime.utcnow())
-#     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
-    
-# class Notification(db.Model, UserMixin):
-#     id = db.Column(db.Integer, primary_key=True)
-#     message = db.Column(db.String(250), nullable=False) 
-#     link = db.Column(db.String, nullable=False)
-#     profile_id = db.Column(db.Integer, db.ForeignKey("profile.id"))
-#     is_readed = db.Column(db.Boolean, default=False)
-#     created_at = db.Column(db.DateTime, default=datetime.utcnow())
-#     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
     
 
     
