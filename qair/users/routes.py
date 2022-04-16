@@ -73,6 +73,10 @@ def register_user():
 def dashboard():
     return render_template("mains/homepage.html")
 
+@users.route("/view-profile")
+@login_required
+def view_user_profile():
+    return redirect(url_for("profiles.view_profile", id=current_user.id))
 
 @users.route("/logout")
 @login_required
