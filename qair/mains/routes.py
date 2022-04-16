@@ -9,3 +9,8 @@ mains = Blueprint("mains", __name__)
 @mains.route("/")
 def homepage():
     return render_template("mains/homepage.html")
+
+@mains.route("/explore")
+@mains.route("/")
+def explore():
+    return render_template("mains/explore.html")
