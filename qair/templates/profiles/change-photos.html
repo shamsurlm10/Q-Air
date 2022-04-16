@@ -3,15 +3,15 @@
 
 
 {% block sub_content %}
-<div class="container form-brand mt-1">
+<div class="container form-brand my-2">
 <div class="row">
     <div class="col-xl-6 offset-xl-3 col-md-8 offset-md-2 ps-5">
         <div>
-            <div class="card card-r card-body shadow-card p-4">
+            <div class="card card-size card-body shadow-card p-4">
                 <form method="POST" enctype="multipart/form-data">
                     {{ form.hidden_tag() }}
                     <div class="mt-4">
-                        {{ form.cover_photo.label(class="form-label mb-0") }} <br>
+                        {{ form.cover_photo.label(class="form-label mb-0 text-deg") }} <br>
                         <div class="text-center">
                             <img src="{{url_for('static', filename=current_user.profile.cover_photo)}}"
                                 alt="Cover Photo" class="cover-photo">
@@ -36,34 +36,35 @@
                             <a href="{{ url_for('profiles.remove_profile_photo') }}" type="button" class="btn btn-delete">Delete</a>
                                     {% endif %}
                         </div>
-                    </div>
-                    <div class="mt-4">
-                        {{ form.profile_photo.label(class="form-label mb-0") }} <br>
-                        <div class="text-center">
-                            <img src="{{url_for('static', filename=current_user.profile.profile_photo)}}"
-                                alt="Profile Photo" class="rounded-circle profile-photo">
-                        </div>
-                        <div class="mt-2">
-                            {% if form.profile_photo.errors %}
-                            <div class="d-flex">
-                                {{ form.profile_photo(class="form-control is-invalid", id="profile_photo")}}
-                                <a href="{{ url_for('profiles.remove_profile_photo') }}"
-                                    class="btn btn-danger">Delete</a>
-                                <div class="invalid-feedback">
-                                    {% for error in form.profile_photo.errors %}
-                                    <span>{{ error }}</span>
-                                    {% endfor %}
+                        <div class="mt-4">
+                            {{ form.profile_photo.label(class="form-label mb-0 text-deg") }} <br>
+                            <div class="text-center">
+                                <img src="{{url_for('static', filename=current_user.profile.profile_photo)}}"
+                                    alt="Profile Photo" class="rounded-circle profile-photo">
+                            </div>
+                            <div class="mt-2">
+                                {% if form.profile_photo.errors %}
+                                <div class="d-flex">
+                                    {{ form.profile_photo(class="form-control is-invalid", id="profile_photo")}}
+                                    <a href="{{ url_for('profiles.remove_profile_photo') }}"
+                                        class="btn btn-danger">Delete</a>
+                                    <div class="invalid-feedback">
+                                        {% for error in form.profile_photo.errors %}
+                                        <span>{{ error }}</span>
+                                        {% endfor %}
+                                    </div>
+                                    {% else %}
+                                    {{ form.profile_photo(class="form-control", id="profile_photo") }}
                                 </div>
-                                {% else %}
-                                {{ form.profile_photo(class="form-control", id="profile_photo") }}
+                            </div>
+                            <div class="mt-2">
+                                {{form.save(class="btn btn-dark btn-update")}}
+                                <a href="{{ url_for('profiles.remove_profile_photo') }}" type="button" class="btn btn-delete">Delete</a>
+                                        {% endif %}
                             </div>
                         </div>
-                        <div class="mt-2">
-                            {{form.save(class="btn btn-dark btn-update")}}
-                            <a href="{{ url_for('profiles.remove_profile_photo') }}" type="button" class="btn btn-delete">Delete</a>
-                                    {% endif %}
-                        </div>
                     </div>
+                    
                 </form>
             </div>
         </div>
