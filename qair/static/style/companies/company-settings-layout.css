@@ -66,6 +66,11 @@
     height: 250px;
     width: 100%;
 }
+.cover-photo-e {
+    height: 210px;
+    width: 100%;
+    border-radius: 10px;
+}
 .btn-book-now{
     color: #FBFBFB;
     background-color: #034C80;
@@ -90,4 +95,26 @@
 
 .text-cus{
     color: #034C80;
+}
+.card-edit-com{
+    background-color: #f1f1f1;
+    width: 500px;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.pp-cus{
+    border: 1px solid #f5f4f4;
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    margin-left: 20px;
+}
+.btn-get-e{
+    color: #FBFBFB;
+    background-color: #034C80;
+    width: 140px;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
 }

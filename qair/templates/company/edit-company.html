@@ -1,5 +1,72 @@
 {% extends "company/company-settings-layout.html" %}
 
 {% block sub_content %}
-edit company and chage company profile and cover
+<div class="container form-brand my-2">
+    <div class="row">
+        <div class="col-xl-6 offset-xl-3 col-md-8 offset-md-2 ps-5">
+            
+                <div class="card card-company card-body shadow-card p-4">
+                    <div class="row">    
+                        <div class="mt-1">
+                            <div class="card card-body shadow-card card-size">
+                                <div class="d-flex flex-row">
+                                    <div class="d-flex flex-column text-color">
+                                        Airplane name
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row w-100">    
+                        <div class="text-cus mt-4">
+                            <b>Cover Photos</b>
+                        </div>
+                        <div class="w-100 text-center">
+                            <img class="cover-photo-e " src="https://scontent.fdac97-1.fna.fbcdn.net/v/t1.6435-9/120577637_4479828825421724_7566104106924558951_n.jpg?_nc_cat=104&ccb=1-5&_nc_sid=e3f864&_nc_ohc=3DSCbbgLYb0AX_IvAou&_nc_oc=AQngIkRVrTLWFniVIbd0KhJLw1Hme-nTxlQ7FaufmueRmUeLxE_CBlMatxddcC7LiOc&_nc_ht=scontent.fdac97-1.fna&oh=00_AT-A8NkF5sct5AcdgQmHnHtyZ-i6uGBz5hn4XZPbXVyXsA&oe=627EBE96" alt="">
+                        </div>  
+                        
+                    </div>
+                    <div class="d-flex row mt-2 w-100">
+                        <form action="">
+                            <div class="d-flex my-2">
+                                <input class="form-control" type="file">
+                            </div>
+                            <div>
+                                <button class="btn-del ms-auto" type="submit">Delete</button>
+                                <button class="btn-get ms-1" type="submit">Save</button>
+                            </div>
+                        </form>
+                        
+                        
+                    </div>
+                    <div class="row w-100">    
+                        <div class="text-cus mt-4">
+                            <b>Profile Photos</b>
+                        </div>
+                        <div class="w-100 text-center">
+                            <img class="pp-cus" src="https://thumbs.dreamstime.com/z/faceless-businessman-avatar-man-suit-blue-tie-human-profile-userpic-face-features-web-picture-gentlemen-85824471.jpg" alt="">
+                        </div>  
+                        
+                    </div>
+                   
+                    <div class="d-flex row mt-2 w-100">
+                        <form action="">
+                            <div class="d-flex my-2">
+                                <input class="form-control" type="file">
+                            </div>
+                            <div>
+                                <button class="btn-del ms-auto" type="submit">Delete</button>
+                                <button class="btn-get ms-1" type="submit">Save</button>
+                            </div>
+                        </form>
+                        
+                        
+                    </div>
+                    
+                </div>
+                 
+            
+        </div>
+    </div>
+</div>
 {% endblock %}
