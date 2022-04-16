@@ -8,96 +8,71 @@
             <div>
                 <div class="card card-r card-body shadow-card p-4">
                     <div class="text-color mb-1">System Status</div>
-
                     <div class="row ">
                         <div class="col-md-6">
-            
-                                <div class="card card-body card-link">
-                                    <div class="d-flex flex-column text-color">
-                                        <div class="text-center card-details text-big">21</div>
-                                        <div class="text-center">Total Registered users</div>
-                                    </div>
+                            <div class="card card-body card-link">
+                                <div class="d-flex flex-column text-color">
+                                    <div class="text-center card-details text-big">{{length}}</div>
+                                    <div class="text-center">Total Registered users</div>
                                 </div>
-                            
+                            </div>
                         </div>
                         <div class="col-md-6">
-                            
-                                <div class="card card-body card-link">
-                                    <div class="d-flex flex-column v text-color">
-                                        <div class="text-center card-details text-big">11</div>
-                                        <div class="text-center">Total Unverified users</div>
-                                    </div>
+                            <div class="card card-body card-link">
+                                <div class="d-flex flex-column v text-color">
+                                    <div class="text-center card-details text-big">{{count}}</div>
+                                    <div class="text-center">Total Unverified users</div>
                                 </div>
-                    
+                            </div>
                         </div>
                     </div>
                     <div class="row mt-3">
                         <div class="col-md-6">
-            
-                                <div class="card card-body card-link">
-                                    <div class="d-flex flex-column text-color">
-                                        <div class="text-center card-details text-big">41</div>
-                                        <div class="text-center">Total Registered users</div>
-                                    </div>
+                            <div class="card card-body card-link">
+                                <div class="d-flex flex-column text-color">
+                                    <div class="text-center card-details text-big">41</div>
+                                    <div class="text-center">Total Company</div>
                                 </div>
-                            
+                            </div>
                         </div>
                         <div class="col-md-6">
-                            
-                                <div class="card card-body card-link">
-                                    <div class="d-flex flex-column text-color">
-                                        <div class="text-center card-details text-big">22</div>
-                                        <div class="text-center">Total Unverified users</div>
-                                    </div>
+                            <div class="card card-body card-link">
+                                <div class="d-flex flex-column text-color">
+                                    <div class="text-center card-details text-big">22</div>
+                                    <div class="text-center">Pending req</div>
                                 </div>
-                    
+                            </div>
                         </div>
                     </div>
-
                     <div class="d-flex align-items-center mt-4">
                         <div class="flex-grow-1">
                             <div class="profile-header user-font text-color text-sm mb-1">New Users</div>
                         </div>
-
                     </div>
-
                     <div class="row">
+                        {% for user in users %}
                         <div class="mb-2 w-100">
                             <div class="px-1">
                                 <div class="card card-body shadow-card mb-1 card-deg">
                                     <div class="d-flex flex-row">
-                                        <img class="img-size" src="https://brur.ac.bd/wp-content/uploads/2019/03/male.jpg" alt="">
-                                        
-                                        <div class="align-self-center mx-2">
-                                            <p class="card-title-custom my-0 text-color text-sm"><b>KOPA SAMSU</b></p>
-                                        <p class="card-body-custom my-0 text-muted sm-text">Joined on 6 MARCH 2022</p>
-                                        </div>                               
-                                    </div>                                    
-                                </div>
-                                <div class="card card-body shadow-card mb-1 card-deg">
+                                        <img class="img-size"
+                                            src="{{ url_for('static', filename=user.profile.profile_photo) }}" alt="">
 
-     
-                                 <div class="d-flex flex-row">
-                                        <img class="img-size" src="https://brur.ac.bd/wp-content/uploads/2019/03/male.jpg" alt="">
-                                        
-                                        <div class="align-self-center mx-2">
-                                            <p class="card-title-custom my-0 text-color text-sm"><b>KOPA SAMSU</b></p>
-                                        <p class="card-body-custom my-0 text-muted sm-text">Joined on 6 MARCH 2022</p>
+                                        <div  class="align-self-center mx-2">
+                                            <p class="card-title-custom my-0 text-color text-sm"><b>{{ user.profile.full_name }}</b></p>
+                                            <p class="card-body-custom my-0 text-muted sm-text">Joined on {{ user.get_joindate() }}</p>
+                                            <a href="{{ url_for('profiles.view_profile', id=user.profile.id) }}">
+                                                <p class="card-body-custom my-0"><i class="fas fa-external-link-alt"></i></p>
+                                            </a>
                                         </div>
-                                    
                                     </div>
-                            
-                
-                                    
                                 </div>
-                            
-                                
                             </div>
                         </div>
-    
-                    </div>    
+                        {% endfor %}
+                    </div>
+                </div>
             </div>
-            
         </div>
     </div>
 </div>

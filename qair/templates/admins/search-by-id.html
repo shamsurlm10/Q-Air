@@ -15,11 +15,11 @@
                                 name="">
                             <button class="btn-get" type="submit">Get</button>
                         </div>
-                        <div class="d-flex mt-4">
-                            <input class="form-control me-2 input-box" type="text" placeholder="Enter the user ID"
-                                name="">
-                            <button class="btn-get" type="submit">Get</button>
-                        </div>
+                            <form action="{{ url_for('admins.get_profile_by_user_id') }}" class="d-flex mt-4" method="POST">
+                                <input class="form-control me-2 input-box" type="text" placeholder="Enter the user ID" name="get_by_user_id">
+                                <button class="btn-get" type="submit">Get</button>
+                            </form>
+                            
                         <div class="d-flex mt-4">
                             <input class="form-control me-2 input-box" type="text" placeholder="Enter the Flight ID"
                                 name="">

@@ -6,19 +6,13 @@ company = Blueprint("company", __name__, url_prefix="/company")
 
 @company.route("/view-flight")
 @login_required
-def view_flight():
+def view_company():
     return render_template("company/view-flight.html")
 
-@company.route("/create-company")
+@company.route("/change-photos")
 @login_required
-def create_company():
-    return render_template("company/create-company.html")
-
-@company.route("/")
-@company.route("/dashboard")
-@login_required
-def dashboard():
-    return render_template("company/dashboard.html")
+def change_photos():
+    return render_template("company/change-photos.html")
 
 @company.route("/add-planes")
 @login_required
@@ -32,7 +26,7 @@ def edit_planes():
 
 @company.route("/edit-company")
 @login_required
-def edit_comapny():
+def edit_company():
     return render_template("company/edit-company.html")
 
 @company.route("/create-flight")

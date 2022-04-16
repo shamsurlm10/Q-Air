@@ -58,7 +58,9 @@ class User(db.Model, UserMixin):
                 "message": "Token is not valid for this user.",
             }
         return {"is_authenticate": True, "message": "Password successfully changed."}
-    
+
+        
+
 class Profile(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     full_name = db.Column(db.String(50), nullable=False)
