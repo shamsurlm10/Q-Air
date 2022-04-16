@@ -4,10 +4,10 @@ from flask_login import current_user, login_required
 
 company = Blueprint("company", __name__, url_prefix="/company")
 
-@company.route("/view-flight")
+@company.route("/view-company")
 @login_required
 def view_company():
-    return render_template("company/view-flight.html")
+    return render_template("company/view-company.html")
 
 @company.route("/change-photos")
 @login_required
