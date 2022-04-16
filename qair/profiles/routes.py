@@ -46,7 +46,7 @@ def change_profile_info():
         form.street.data = current_user.profile.address.street
     return render_template("profiles/edit-profile-info.html", active="edit-profile-info", form=form)
 
-@profiles.route("/changew-photos", methods=["GET", "POST"])
+@profiles.route("/change-photos", methods=["GET", "POST"])
 @login_required
 def change_photos():
     form = ChangePhoto()
