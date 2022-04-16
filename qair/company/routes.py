@@ -38,3 +38,8 @@ def create_flight():
 @login_required
 def edit_flight():
     return render_template("company/edit-flight.html")
+
+@company.route("/create-route")
+@login_required
+def create_route():
+    return render_template("company/create-route.html")
