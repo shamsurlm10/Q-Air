@@ -6,111 +6,114 @@
 {% endblock %}
 
 {% block content %}
-        <div class="container mt-5">
-          <div class="row">
-            <div class="col-md-8 offset-md-2">
-              <div class="mt-4">
-                <div class="card-l p-0">
-                  <div class="d-flex flex-row btn-nav-pills">
-                    <button class="p-2 btn-nav pill-btn" onclick="onPillClick('book')">Book</button>
-                    <button class="p-2 btn-nav pill-btn" onclick="onPillClick('mytrip')">My Trip</button>
-                    <button class="p-2 btn-nav pill-btn" onclick="onPillClick('checkin')">Check In</button>
-                    <button class="p-2 btn-nav pill-btn" onclick="onPillClick('flightstatus')">Flight Status</button>
-                  </div>
-                  <div id="pills-book">
-                    <form action="">
-                      <div class="row g-0 px-2 mt-4">
-                        <div class="col form-floating">
-                          <input class="form-control" placeholder="Leave a comment here" id="floatingTextarea"/>
-                          <label for="floatingTextarea">From</label>
-                        </div>
-                        <div class="col form-floating">
-                          <input class="form-control" placeholder="Leave a comment here" id="floatingTextarea"/>
-                          <label for="floatingTextarea">To</label>
-                        </div>
-                        <div class="col">
-                          <select class="form-control" style="height: 100%;" name="" id="">
-                            <option value="">
-                              Select Passenger/Class
-                            </option>
-                            <option value="">
-                              Economy
-                            </option>
-                            <option value="">
-                              Business
-                            </option>
-                            <option value="">
-                              Premium
-                            </option>
-                          </select>
-                        </div>
-                        <div class="col">
-                          <input type="date" class="form-control" placeholder="Leave a comment here" id="floatingTextarea" style="height: 100%;"/>
-                        </div>
-                      </div>
-                      <div class="d-flex flex-row-reverse align-items-center">
-                        <button class="sub m-2" type="submit">Show Flights</button>
-                      </div>
-                    </form>
-                  </div>
-                  <div id="pills-mytrip" class="d-none">
-                    <form action="">
-                      <div class="row g-0 px-2 mt-4">
-                        <div class="col form-floating">
-                          <input class="form-control" placeholder="Leave a comment here" id="floatingTextarea"/>
-                          <label for="floatingTextarea">Booking reference</label>
-                        </div>
-                        <div class="col form-floating">
-                          <input class="form-control" placeholder="Leave a comment here" id="floatingTextarea"/>
-                          <label for="floatingTextarea">Last name</label>
-                        </div>
-                      </div>
-                      <div class="d-flex flex-row-reverse align-items-center">
-                        <button class="sub m-2" type="submit">Retrieve booking</button>
-                      </div>
-                    </form>
-                  </div>
-                  <div id="pills-checkin" class="d-none">
-                    <form action="">
-                      <div class="row g-0 px-2 mt-4">
-                        <div class="col form-floating">
-                          <input class="form-control" placeholder="Leave a comment here" id="floatingTextarea"/>
-                          <label for="floatingTextarea">Booking reference</label>
-                        </div>
-                        <div class="col form-floating">
-                          <input class="form-control" placeholder="Leave a comment here" id="floatingTextarea"/>
-                          <label for="floatingTextarea">Last name</label>
-                        </div>
-                      </div>
-                      <div class="d-flex flex-row-reverse align-items-center">
-                        <button class="sub m-2" type="submit">Check-in</button>
-                      </div>
-                    </form>
-                  </div>
-                  <div id="pills-flightstatus" class="d-none">
-                    <form action="">
-                      <div class="row g-0 px-2 mt-4">
-                        <div class="col form-floating">
-                          <input class="form-control" placeholder="Leave a comment here" id="floatingTextarea"/>
-                          <label for="floatingTextarea">From/Flight number</label>
-                        </div>
-                        <div class="col form-floating">
-                          <input class="form-control" placeholder="Leave a comment here" id="floatingTextarea"/>
-                          <label for="floatingTextarea">To</label>
-                        </div>
-                        <div class="col">
-                          <input type="date" class="form-control" placeholder="Leave a comment here" id="floatingTextarea" style="height: 100%;"/>
-                        </div>
-                      </div>
-                      <div class="d-flex flex-row-reverse align-items-center">
-                        <button class="sub m-2" type="submit">Submit</button>
-                      </div>
-                    </form>
-                  </div>
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="mt-4">
+        <div class="card-l p-0">
+          <div class="d-flex flex-row btn-nav-pills">
+            <button class="p-2 btn-nav pill-btn" onclick="onPillClick('book')">Book</button>
+            <button class="p-2 btn-nav pill-btn" onclick="onPillClick('mytrip')">My Trip</button>
+            <button class="p-2 btn-nav pill-btn" onclick="onPillClick('checkin')">Check In</button>
+            <button class="p-2 btn-nav pill-btn" onclick="onPillClick('flightstatus')">Flight Status</button>
+          </div>
+          <div id="pills-book">
+            <form action="">
+              <div class="row g-0 px-2 mt-4">
+                <div class="col form-floating">
+                  <input class="form-control" placeholder="Leave a comment here" id="floatingTextarea" />
+                  <label for="floatingTextarea">From</label>
+                </div>
+                <div class="col form-floating">
+                  <input class="form-control" placeholder="Leave a comment here" id="floatingTextarea" />
+                  <label for="floatingTextarea">To</label>
+                </div>
+                <div class="col">
+                  <select class="form-control" style="height: 100%;" name="" id="">
+                    <option value="">
+                      Select Passenger/Class
+                    </option>
+                    <option value="">
+                      Economy
+                    </option>
+                    <option value="">
+                      Business
+                    </option>
+                    <option value="">
+                      Premium
+                    </option>
+                  </select>
+                </div>
+                <div class="col">
+                  <input type="date" class="form-control" placeholder="Leave a comment here" id="floatingTextarea"
+                    style="height: 100%;" />
+                </div>
               </div>
-            </div>
+              <div class="d-flex flex-row-reverse align-items-center">
+                <button class="sub m-2" type="submit">Show Flights</button>
+              </div>
+            </form>
+          </div>
+          <div id="pills-mytrip" class="d-none">
+            <form action="">
+              <div class="row g-0 px-2 mt-4">
+                <div class="col form-floating">
+                  <input class="form-control" placeholder="Leave a comment here" id="floatingTextarea" />
+                  <label for="floatingTextarea">Booking reference</label>
+                </div>
+                <div class="col form-floating">
+                  <input class="form-control" placeholder="Leave a comment here" id="floatingTextarea" />
+                  <label for="floatingTextarea">Last name</label>
+                </div>
+              </div>
+              <div class="d-flex flex-row-reverse align-items-center">
+                <button class="sub m-2" type="submit">Retrieve booking</button>
+              </div>
+            </form>
+          </div>
+          <div id="pills-checkin" class="d-none">
+            <form action="">
+              <div class="row g-0 px-2 mt-4">
+                <div class="col form-floating">
+                  <input class="form-control" placeholder="Leave a comment here" id="floatingTextarea" />
+                  <label for="floatingTextarea">Booking reference</label>
+                </div>
+                <div class="col form-floating">
+                  <input class="form-control" placeholder="Leave a comment here" id="floatingTextarea" />
+                  <label for="floatingTextarea">Last name</label>
+                </div>
+              </div>
+              <div class="d-flex flex-row-reverse align-items-center">
+                <button class="sub m-2" type="submit">Check-in</button>
+              </div>
+            </form>
+          </div>
+          <div id="pills-flightstatus" class="d-none">
+            <form action="">
+              <div class="row g-0 px-2 mt-4">
+                <div class="col form-floating">
+                  <input class="form-control" placeholder="Leave a comment here" id="floatingTextarea" />
+                  <label for="floatingTextarea">From/Flight number</label>
+                </div>
+                <div class="col form-floating">
+                  <input class="form-control" placeholder="Leave a comment here" id="floatingTextarea" />
+                  <label for="floatingTextarea">To</label>
+                </div>
+                <div class="col">
+                  <input type="date" class="form-control" placeholder="Leave a comment here" id="floatingTextarea"
+                    style="height: 100%;" />
+                </div>
+              </div>
+              <div class="d-flex flex-row-reverse align-items-center">
+                <button class="sub m-2" type="submit">Submit</button>
+              </div>
+            </form>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
 <script src="{{url_for('static',filename='JS/mains/homepage.js')}}">
 </script>
 {% endblock %}

@@ -1,0 +1,161 @@
+{% extends "base.html" %}
+{% block title %} Niagara Falls {% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static', filename='style/mains/explore.css')}}">
+{% endblock %}
+
+{% block content %}
+
+<div class="container my-1">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                  <div class="carousel-item active">
+                    <img class="image-size" src="{{url_for('static', filename='image/tour_place/ng1.jpg')}}" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img class="image-size" src="{{url_for('static', filename='image/tour_place/ng2.jpg')}}" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img class="image-size" src="{{url_for('static', filename='image/tour_place/ng3.jpg')}}" class="d-block w-100" alt="...">
+                  </div>
+                  <div class="carousel-item">
+                    <img class="image-size" src="{{url_for('static', filename='image/tour_place/ng4.jpg')}}" class="d-block w-100" alt="...">
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+              <div class="text-color mt-2"><b>Great Wall of China</b></div>
+              <div class="d-flex my-1">
+                  <div>
+                    Niagara Falls, Ontario, is a Canadian city at the famous waterfalls of the same name, linked with the U.S. by the Rainbow Bridge. Its site on the Niagara River's western shore overlooks the Horseshoe Falls, the cascades' most expansive section.
+                  </div>
+                  <div class="ms-3">
+                    Elevators take visitors to a lower, wetter vantage point behind the falls. A cliffside park features a promenade alongside 520-ft.-high Skylon Tower with an observation deck.
+                  </div>
+              </div>
+              <div class="mt-3 text-color">
+                <b>Book flight now to visit Niagara!</b>
+            </div>
+                <div class="row my-2">
+                      <div class="card-l p-0">
+                        <div class="d-flex flex-row btn-nav-pills">
+                          <button class="p-2 btn-nav pill-btn" onclick="onPillClick('book')">Book</button>
+                          <button class="p-2 btn-nav pill-btn" onclick="onPillClick('mytrip')">My Trip</button>
+                          <button class="p-2 btn-nav pill-btn" onclick="onPillClick('checkin')">Check In</button>
+                          <button class="p-2 btn-nav pill-btn" onclick="onPillClick('flightstatus')">Flight Status</button>
+                        </div>
+                        <div id="pills-book">
+                          <form action="">
+                            <div class="row g-0 px-2 mt-4">
+                              <div class="col form-floating">
+                                <input class="form-control" placeholder="Leave a comment here" id="floatingTextarea" />
+                                <label for="floatingTextarea">From</label>
+                              </div>
+                              <div class="col form-floating">
+                                <input class="form-control" placeholder="Leave a comment here" id="floatingTextarea" />
+                                <label for="floatingTextarea">To</label>
+                              </div>
+                              <div class="col">
+                                <select class="form-control" style="height: 100%;" name="" id="">
+                                  <option value="">
+                                    Select Passenger/Class
+                                  </option>
+                                  <option value="">
+                                    Economy
+                                  </option>
+                                  <option value="">
+                                    Business
+                                  </option>
+                                  <option value="">
+                                    Premium
+                                  </option>
+                                </select>
+                              </div>
+                              <div class="col">
+                                <input type="date" class="form-control" placeholder="Leave a comment here" id="floatingTextarea"
+                                  style="height: 100%;" />
+                              </div>
+                            </div>
+                            <div class="d-flex flex-row-reverse align-items-center">
+                              <button class="sub m-2" type="submit">Show Flights</button>
+                            </div>
+                          </form>
+                        </div>
+                        <div id="pills-mytrip" class="d-none">
+                          <form action="">
+                            <div class="row g-0 px-2 mt-4">
+                              <div class="col form-floating">
+                                <input class="form-control" placeholder="Leave a comment here" id="floatingTextarea" />
+                                <label for="floatingTextarea">Booking reference</label>
+                              </div>
+                              <div class="col form-floating">
+                                <input class="form-control" placeholder="Leave a comment here" id="floatingTextarea" />
+                                <label for="floatingTextarea">Last name</label>
+                              </div>
+                            </div>
+                            <div class="d-flex flex-row-reverse align-items-center">
+                              <button class="sub m-2" type="submit">Retrieve booking</button>
+                            </div>
+                          </form>
+                        </div>
+                        <div id="pills-checkin" class="d-none">
+                          <form action="">
+                            <div class="row g-0 px-2 mt-4">
+                              <div class="col form-floating">
+                                <input class="form-control" placeholder="Leave a comment here" id="floatingTextarea" />
+                                <label for="floatingTextarea">Booking reference</label>
+                              </div>
+                              <div class="col form-floating">
+                                <input class="form-control" placeholder="Leave a comment here" id="floatingTextarea" />
+                                <label for="floatingTextarea">Last name</label>
+                              </div>
+                            </div>
+                            <div class="d-flex flex-row-reverse align-items-center">
+                              <button class="sub m-2" type="submit">Check-in</button>
+                            </div>
+                          </form>
+                        </div>
+                        <div id="pills-flightstatus" class="d-none">
+                          <form action="">
+                            <div class="row g-0 px-2 mt-4">
+                              <div class="col form-floating">
+                                <input class="form-control" placeholder="Leave a comment here" id="floatingTextarea" />
+                                <label for="floatingTextarea">From/Flight number</label>
+                              </div>
+                              <div class="col form-floating">
+                                <input class="form-control" placeholder="Leave a comment here" id="floatingTextarea" />
+                                <label for="floatingTextarea">To</label>
+                              </div>
+                              <div class="col">
+                                <input type="date" class="form-control" placeholder="Leave a comment here" id="floatingTextarea"
+                                  style="height: 100%;" />
+                              </div>
+                            </div>
+                            <div class="d-flex flex-row-reverse align-items-center">
+                              <button class="sub m-2" type="submit">Submit</button>
+                            </div>
+                          </form>
+                        </div>
+                      </div>
+                    
+                 
+                </div>
+              
+              <script src="{{url_for('static',filename='JS/mains/homepage.js')}}">
+              </script>
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
