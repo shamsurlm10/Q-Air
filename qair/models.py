@@ -75,6 +75,7 @@ class Profile(db.Model):
     contact_no = db.Column(db.String(11))
     # notification = db.relationship("Notification", backref="profile")
     address = db.relationship("Address", backref="profile", uselist=False)
+    company = db.relationship("Company", backref="company", uselist=False)
     # flight_bookmarks = db.Column(db.ARRAY(db.Integer), default=[])
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
@@ -111,73 +112,82 @@ class Address(db.Model):
         self.profile_id = profile_id
 
     
-'''class Company(db.Model):
+class Company(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     company_name = db.Column(db.String, nullable=False)
-    logo = db.Column(
-        db.String, default="/images/default/Logos/placeholder.jpg"
+    profile_id = db.Column(db.Integer, db.ForeignKey("profile.id"))
+    profile_photo = db.Column(
+        db.String, default="/image/default/ProfilePhotos/default.png"
+    )
+    cover_photo = db.Column(
+        db.String, default="/image/default/CoverPhotos/default.png"
     )
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
     
-class CompanyRating(db.Model):
-    company_id = db.Column(db.Integer, db.ForeignKey("comapany.id"))
-    profile_id = db.Column(db.Integer, db.ForeignKey("profile.id"))
-    message = db.Column(db.String(250), nullable=False)
-    rating = db.Column(db.Integer(5))
-    created_at = db.Column(db.DateTime, default=datetime.utcnow())
-    updated_at = db.Column(db.DateTime, default=datetime.utcnow())
+    def __init__(self,company_name:str,profile_photo:str,cover_photo:str,profile_id:int)-> None:
+        self.company_name = company_name
+        self.profile_photo = profile_photo
+        self.cover_photo = cover_photo
+        self.profile_id = profile_id
     
-class Notification(db.Model, UserMixin):
-    id = db.Column(db.Integer, primary_key=True)
-    message = db.Column(db.String(250), nullable=False) 
-    link = db.Column(db.String, nullable=False)
-    profile_id = db.Column(db.Integer, db.ForeignKey("profile.id"))
-    is_readed = db.Column(db.Boolean, default=False)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow())
-    updated_at = db.Column(db.DateTime, default=datetime.utcnow())
+# class CompanyRating(db.Model):
+#     company_id = db.Column(db.Integer, db.ForeignKey("comapany.id"))
+#     profile_id = db.Column(db.Integer, db.ForeignKey("profile.id"))
+#     message = db.Column(db.String(250), nullable=False)
+#     rating = db.Column(db.Integer(5))
+#     created_at = db.Column(db.DateTime, default=datetime.utcnow())
+#     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
     
-class Flight(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    airplane_id = db.Column(db.Integer, db.ForeignKey("airplane.id"))
-    depart_time = db.Column(db.DateTime)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow())
-    updated_at = db.Column(db.DateTime, default=datetime.utcnow())
+# class Notification(db.Model, UserMixin):
+#     id = db.Column(db.Integer, primary_key=True)
+#     message = db.Column(db.String(250), nullable=False) 
+#     link = db.Column(db.String, nullable=False)
+#     profile_id = db.Column(db.Integer, db.ForeignKey("profile.id"))
+#     is_readed = db.Column(db.Boolean, default=False)
+#     created_at = db.Column(db.DateTime, default=datetime.utcnow())
+#     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
+    
+# class Flight(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     airplane_id = db.Column(db.Integer, db.ForeignKey("airplane.id"))
+#     depart_time = db.Column(db.DateTime)
+#     created_at = db.Column(db.DateTime, default=datetime.utcnow())
+#     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
 
-class FlightClass(db.Model):
-    class_name = db.Column(db.String)
-    airplane_id = db.Column(db.Integer, db.ForeignKey("airplane.id"))
-    cost = db.Column(db.Integer(15))
-    created_at = db.Column(db.DateTime, default=datetime.utcnow())
-    updated_at = db.Column(db.DateTime, default=datetime.utcnow())
+# class FlightClass(db.Model):
+#     class_name = db.Column(db.String)
+#     airplane_id = db.Column(db.Integer, db.ForeignKey("airplane.id"))
+#     cost = db.Column(db.Integer(15))
+#     created_at = db.Column(db.DateTime, default=datetime.utcnow())
+#     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
     
-class Airplane(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String)
-    airplane_code = db.Column(db.String)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow())
-    updated_at = db.Column(db.DateTime, default=datetime.utcnow())
+# class Airplane(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     name = db.Column(db.String)
+#     airplane_code = db.Column(db.String)
+#     created_at = db.Column(db.DateTime, default=datetime.utcnow())
+#     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
     
-class AirplaneRoute(db.Model):
-    airplane_id = db.Column(db.String)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow())
-    updated_at = db.Column(db.DateTime, default=datetime.utcnow())
+# class AirplaneRoute(db.Model):
+#     airplane_id = db.Column(db.String)
+#     created_at = db.Column(db.DateTime, default=datetime.utcnow())
+#     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
     
-class Route(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    origin = db.Column(db.String)
-    destination = db.Column(db.String)
-    distance = db.Column(db.Integer(15))
-    duration = db.Column(db.DateTime)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow())
-    updated_at = db.Column(db.DateTime, default=datetime.utcnow())
+# class Route(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     origin = db.Column(db.String)
+#     destination = db.Column(db.String)
+#     distance = db.Column(db.Integer(15))
+#     duration = db.Column(db.DateTime)
+#     created_at = db.Column(db.DateTime, default=datetime.utcnow())
+#     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
     
-class Reservation(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    profile_id = db.Column(db.Integer, db.ForeignKey("profile.id"))
-    flight_id = db.Column(db.Integer, db.ForeignKey("flight.id"))
-    seat_no = db.Column(db.Integer(15))
-    eticket_id = db.Column(db.String)
-    created_at = db.Column(db.DateTime, default=datetime.utcnow())
-    updated_at = db.Column(db.DateTime, default=datetime.utcnow())'''
-    
+# class Reservation(db.Model):
+#     id = db.Column(db.Integer, primary_key=True)
+#     profile_id = db.Column(db.Integer, db.ForeignKey("profile.id"))
+#     flight_id = db.Column(db.Integer, db.ForeignKey("flight.id"))
+#     seat_no = db.Column(db.Integer(15))
+#     eticket_id = db.Column(db.String)
+#     created_at = db.Column(db.DateTime, default=datetime.utcnow())
+#     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
