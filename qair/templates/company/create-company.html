@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %} View Company {% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static', filename='style/companies/company-settings-layout.css')}}">
+{% endblock %}
+
+{% block content %}
+<div class="container form-brand mt-1">
+    <div class="row">
+        <div class="col-xl-6 offset-xl-3 col-md-8 offset-md-2 ps-5">
+            <div>
+                <div class="card card-r card-body shadow-card p-4">
+                  <form method="POST" class="my-5">
+                    {{ form.hidden_tag() }}
+                    <div class="mb-3">
+                        {% if form.company_name.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.company_name.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.company_name(class="form-control", id="dob") }}
+                        {% endif %}
+                    </div>
+                    <div class="mt-2">
+                        {{form.save(class="btn btn-primary btn-sm mt-2 btn-update")}}
+                    </div>
+                  </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
