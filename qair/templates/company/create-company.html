@@ -6,14 +6,14 @@
 {% endblock %}
 
 {% block content %}
-<div class="container form-brand mt-1">
+<div class="container form-brand mt-5">
     <div class="row">
         <div class="col-xl-6 offset-xl-3 col-md-8 offset-md-2 ps-5">
             <div>
-                <div class="card card-r card-body shadow-card p-4">
-                  <form method="POST" class="my-5">
+                <div class="card card-company card-body py-5">
+                  <form method="POST" class="w-100">
                     {{ form.hidden_tag() }}
-                    <div class="mb-3">
+                    <div class="mb-2">
                         {% if form.company_name.errors %}
                         <div class="invalid-feedback">
                             {% for error in form.company_name.errors %}
@@ -24,9 +24,7 @@
                         {{ form.company_name(class="form-control", id="dob") }}
                         {% endif %}
                     </div>
-                    <div class="mt-2">
-                        {{form.save(class="btn btn-primary btn-sm mt-2 btn-update")}}
-                    </div>
+                        {{form.save(class="btn-get btn btn-sm mt-2 btn-update")}}
                   </form>
                 </div>
             </div>

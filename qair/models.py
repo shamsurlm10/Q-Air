@@ -75,7 +75,7 @@ class Profile(db.Model):
     contact_no = db.Column(db.String(11))
     # notification = db.relationship("Notification", backref="profile")
     address = db.relationship("Address", backref="profile", uselist=False)
-    company = db.relationship("Address", backref="company", uselist=False)
+    company = db.relationship("Company", backref="company", uselist=False)
     # flight_bookmarks = db.Column(db.ARRAY(db.Integer), default=[])
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
