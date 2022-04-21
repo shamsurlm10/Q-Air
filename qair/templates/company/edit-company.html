@@ -24,6 +24,32 @@
                             </div>
                         </div>
                         <div class="mt-4">
+                            {{ form.profile_photo.label(class="form-label mb-0 text-deg") }} <br>
+                            <div class="text-center">
+                                <img src="{{url_for('static', filename=company.profile_photo)}}" alt="Profile Photo"
+                                    class="rounded-circle company-profile-photo">
+                            </div>
+                            {% if form.profile_photo.errors %}
+                            <div class="mt-2">
+                                {{ form.profile_photo(class="form-control is-invalid", id="profile_photo")}}
+                            </div>
+                            <div class="invalid-feedback">
+                                {% for error in form.profile_photo.errors %}
+                                <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            <div class="mt-2">
+                                {{ form.profile_photo(class="form-control", id="profile_photo")}}
+                            </div>
+                            {% endif %}
+                            <div class="mt-2">
+                                {{form.save(class="btn btn-dark btn-update")}}
+                                <a href="{{ url_for('company.remove_profile_photo') }}" type="button"
+                                    class="btn btn-delete">Delete</a>
+                            </div>
+                        </div>
+                        <div class="mt-4">
                             {{ form.cover_photo.label(class="form-label mb-0 text-deg") }} <br>
                             <div class="text-center">
                                 <img src="{{url_for('static', filename=company.cover_photo)}}" alt="Cover Photo"

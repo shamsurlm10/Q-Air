@@ -84,7 +84,7 @@ def edit_company():
 @company.route("/remove-profile-photo")
 @login_required
 def remove_profile_photo():
-    if not ("/image/default/ProfilePhotos/default.jpg" in current_user.profile.profile_photo):
+    if not ("/image/default/ProfilePhotos/default.jpg" in current_user.profile.company.profile_photo):
         remove_photo(current_user.profile.company.profile_photo)
         current_user.profile.company.profile_photo = "/image/default/ProfilePhotos/default.jpg"
         db.session.commit()
@@ -96,7 +96,7 @@ def remove_profile_photo():
 @company.route("/settings/remove-cover-photo")
 @login_required
 def remove_cover_photo():
-    if not ("/image/default/CoverPhotos/default.png" in current_user.profile.cover_photo):
+    if not ("/image/default/CoverPhotos/default.png" in current_user.profile.company.cover_photo):
         remove_photo(current_user.profile.company.cover_photo)
         current_user.profile.company.cover_photo = "/image/default/CoverPhotos/default.png"
         db.session.commit()
@@ -108,6 +108,7 @@ def remove_cover_photo():
 @company.route("/create-flight")
 @login_required
 def create_flight():
+    # form = 
     return render_template("company/create-flight.html")
 
 

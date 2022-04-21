@@ -116,6 +116,8 @@ class Company(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     company_name = db.Column(db.String, nullable=False)
     profile_id = db.Column(db.Integer, db.ForeignKey("profile.id"))
+    # flight = db.relationship("Flight", backref="company", uselist=False)
+    # airplane = db.relationship("Airplan", backref="company", uselist=False)
     profile_photo = db.Column(
         db.String, default="/image/default/ProfilePhotos/default.png"
     )
@@ -150,6 +152,7 @@ class Company(db.Model):
     
 # class Flight(db.Model):
 #     id = db.Column(db.Integer, primary_key=True)
+#     company_id = db.Column(db.Integer, db.ForeignKey("company.id"))
 #     airplane_id = db.Column(db.Integer, db.ForeignKey("airplane.id"))
 #     depart_time = db.Column(db.DateTime)
 #     created_at = db.Column(db.DateTime, default=datetime.utcnow())
@@ -166,6 +169,7 @@ class Company(db.Model):
 #     id = db.Column(db.Integer, primary_key=True)
 #     name = db.Column(db.String)
 #     airplane_code = db.Column(db.String)
+#     company_id = db.Column(db.Integer, db.ForeignKey("company.id"))
 #     created_at = db.Column(db.DateTime, default=datetime.utcnow())
 #     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
     
