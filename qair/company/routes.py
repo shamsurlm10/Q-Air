@@ -4,7 +4,7 @@ from flask_login import current_user, login_required
 from qair.company.utils import remove_photo, save_photos
 from qair.company.forms import *
 from qair import bcrypt, db
-from qair.models import Company
+from qair.models import Company, Route
 
 company = Blueprint("company", __name__, url_prefix="/company")
 
@@ -23,8 +23,7 @@ def create_company():
         if current_user.profile.company:
             flash("You have already created an account", "danger")
             return redirect(url_for('mains.homepage'))
-        company = Company(form.company_name.data, form.profile_photo.data,
-                          form.cover_photo.data, current_user.profile.id)
+        company = Company(form.company_name.data)
         db.session.add(company)
         db.session.commit()
         flash(f"Company created", "success")
@@ -118,7 +117,14 @@ def edit_flight():
     return render_template("company/edit-flight.html")
 
 
-@company.route("/create-route")
+@company.route("/create-route", methods=["POST", "GET"])
 @login_required
 def create_route():
-    return render_template("company/create-route.html")
+    form = CreateRoute()
+    if form.validate_on_submit():
+        route = Route(form.origin.data, form.destination.data, form.distance.data, form.duration.data, current_user.profile.company.id)
+        db.session.add(route)
+        db.session.commit()
+        flash("Route Created.", "success")
+        return redirect(url_for("company.edit_company"))
+    return render_template("company/create-route.html", form=form)

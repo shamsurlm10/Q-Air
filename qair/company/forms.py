@@ -36,3 +36,15 @@ class CreateCompany(FlaskForm):
 #     ], render_kw={"placeholder": "Departure Time"})
 #     save = SubmitField("Create")
 
+class CreateRoute(FlaskForm):
+    origin = StringField("Origin", validators=[
+        DataRequired(), Length(max=40, min=2)
+    ], render_kw={"placeholder": "Origin"})
+    destination = StringField("Destination", validators=[
+        DataRequired(), Length(max=40, min=2)
+    ], render_kw={"placeholder": "Destination"})
+    distance = IntegerField("Distance", validators=[
+        DataRequired()], render_kw={"placeholder": "Distance"})
+    duration = IntegerField("Duration", validators=[
+        DataRequired()], render_kw={"placeholder": "Duration"})
+    save = SubmitField("Create")

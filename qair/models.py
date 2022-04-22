@@ -118,6 +118,7 @@ class Company(db.Model):
     profile_id = db.Column(db.Integer, db.ForeignKey("profile.id"))
     # flight = db.relationship("Flight", backref="company", uselist=False)
     # airplane = db.relationship("Airplan", backref="company", uselist=False)
+    route = db.relationship("Route", backref="company")
     profile_photo = db.Column(
         db.String, default="/image/default/ProfilePhotos/default.png"
     )
@@ -127,11 +128,8 @@ class Company(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
     
-    def __init__(self,company_name:str,profile_photo:str,cover_photo:str,profile_id:int)-> None:
+    def __init__(self,company_name:str)-> None:
         self.company_name = company_name
-        self.profile_photo = profile_photo
-        self.cover_photo = cover_photo
-        self.profile_id = profile_id
     
 # class CompanyRating(db.Model):
 #     company_id = db.Column(db.Integer, db.ForeignKey("comapany.id"))
@@ -178,14 +176,22 @@ class Company(db.Model):
 #     created_at = db.Column(db.DateTime, default=datetime.utcnow())
 #     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
     
-# class Route(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     origin = db.Column(db.String)
-#     destination = db.Column(db.String)
-#     distance = db.Column(db.Integer(15))
-#     duration = db.Column(db.DateTime)
-#     created_at = db.Column(db.DateTime, default=datetime.utcnow())
-#     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
+class Route(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    company_id = db.Column(db.Integer, db.ForeignKey("comapany.id"))
+    origin = db.Column(db.String)
+    destination = db.Column(db.String)
+    distance = db.Column(db.Integer)
+    duration = db.Column(db.Integer)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow())
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow())
+    
+    def __init__(self,origin:str,destination:str,distance:int,duration:int, company_id:int)-> None:
+        self.origin = origin
+        self.destination = destination
+        self.distance = distance
+        self.duration = duration
+        self.company_id = company_id
     
 # class Reservation(db.Model):
 #     id = db.Column(db.Integer, primary_key=True)

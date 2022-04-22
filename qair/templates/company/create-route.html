@@ -1,8 +1,72 @@
-{% extends "company/company-settings-layout.html" %}
-{% block title %} Create Route {% endblock %}
+{% extends "base.html" %}
+{% block title %} View Company {% endblock %}
 
-{% block sub_content %}
+{% block css %}
+<link rel="stylesheet" href="{{url_for('static', filename='style/companies/company-settings-layout.css')}}">
+{% endblock %}
+
+{% block content %}
 <div class="container form-brand mt-1">
+    <div class="row">
+        <div class="col-xl-6 offset-xl-3 col-md-8 offset-md-2 ps-5">
+            <div>
+                <div class="card card-company card-body py-5">
+                  <form method="POST" class="w-100">
+                    {{ form.hidden_tag() }}
+                    <div class="mb-3">
+                        {% if form.origin.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.origin.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.origin(class="form-control", id="dob") }}
+                        {% endif %}
+                    </div>
+                    <div class="mb-3">
+                        {% if form.destination.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.destination.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.destination(class="form-control", id="dob") }}
+                        {% endif %}
+                    </div>
+                    <div class="mb-3">
+                        {% if form.distance.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.distance.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.distance(class="form-control", id="dob") }}
+                        {% endif %}
+                    </div>
+                    <div class="mb-3">
+                        {% if form.duration.errors %}
+                        <div class="invalid-feedback">
+                            {% for error in form.duration.errors %}
+                            <span>{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                        {% else %}
+                        {{ form.duration(class="form-control", id="dob") }}
+                        {% endif %}
+                    </div>
+                    <div class="mt-2">
+                        {{form.save(class="btn-get btn btn-sm mt-2 btn-update")}}
+                    </div>
+                  </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div class="container form-brand mt-1">
     <div class="row">
         <div class="col-xl-6 offset-xl-3 col-md-8 offset-md-2 ps-5">
             <div>
@@ -60,7 +124,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 {% endblock %}
 
 
