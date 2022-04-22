@@ -92,3 +92,4 @@ class EditPlanes(FlaskForm):
     
      update = SubmitField("Update")
      delete = SubmitField("Delete")
+    

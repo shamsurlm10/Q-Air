@@ -132,6 +132,9 @@ class Company(db.Model):
     def __init__(self,company_name:str, profile_id:int)-> None:
         self.company_name = company_name
         self.profile_id = profile_id
+        
+    def getFoundedDate(self):
+        return self.created_at.strftime("%d %B, %Y")
     
 # class CompanyRating(db.Model):
 #     company_id = db.Column(db.Integer, db.ForeignKey("comapany.id"))

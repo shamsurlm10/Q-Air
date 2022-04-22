@@ -9,10 +9,11 @@ from qair.models import Company, Route
 company = Blueprint("company", __name__, url_prefix="/company")
 
 
-@company.route("/view-company")
+@company.route("/view-company/<int:id>")
 @login_required
-def view_company():
-    return render_template("company/view-company.html")
+def view_company(id:int):
+    company = Company.query.get(id)
+    return render_template("company/view-company.html", company=company)
 
 
 @company.route("/create-company", methods=["POST", "GET"])

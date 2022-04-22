@@ -1,0 +1,34 @@
+{% extends "admins/admin-layout.html" %}
+{% block title %} View Companies {% endblock %}
+
+
+{% block sub_content %}
+<div class="container form-brand mt-1 mb-2">
+    <div class="row">
+        <div class="col-xl-6 offset-xl-3 col-md-8 offset-md-2 ps-5">
+            <div class="card card-r card-body shadow-card p-4">
+                <div class="text-color mb-1">All the companies</div>
+                <div class="row">
+                    <div class="mb-2 w-100">
+                        <div class="px-1">
+                            {% for company in companies %}
+                            <div class="card card-body shadow-card mb-1 card-deg">
+                                <div class="d-flex flex-row">
+                                    <img class="img-size"
+                                        src="{{url_for('static', filename= company.profile_photo)}}"
+                                        alt="">
+                                    <div class="align-self-center mx-2">
+                                        <a href="{{url_for('company.view_company', id=company.id)}}" class="card-title-custom my-0 text-color text-sm" style="text-decoration: none;"><b>{{ company.company_name }}</b>
+                                        </a>
+                                        <p class="card-body-custom my-0 text-muted sm-text">Founded at {{ company.getFoundedDate() }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endblock %}

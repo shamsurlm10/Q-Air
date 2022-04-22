@@ -1,6 +1,6 @@
 from flask import Blueprint, flash, redirect, render_template, request, url_for
 from flask_login import current_user, login_required
-from qair.models import Profile, User
+from qair.models import Company, Profile, User
 from sqlalchemy import desc
 
 admins = Blueprint("admins", __name__, url_prefix="/admins")
@@ -10,6 +10,8 @@ admins = Blueprint("admins", __name__, url_prefix="/admins")
 @login_required
 def dashboard():
     users = User.query.all()
+    companies = Company.query.all()
+    company_length = len(companies)
     length = len(users)
     new_user = User.query.order_by(desc(User.created_at))[:4]
     profile = Profile.query.all()
@@ -17,7 +19,7 @@ def dashboard():
     for i in range(length):
         if not profile[i].user.is_verified:
             count+=1
-    return render_template("admins/dashboard.html",length=length, count=count,users=new_user)
+    return render_template("admins/dashboard.html",length=length, count=count, users=new_user, company_length=company_length)
 
 @admins.route("/get-profiles-by-profile-id", methods=["POST"])
 @login_required
@@ -50,10 +52,11 @@ def get_profile_by_email_id():
 def pending_request():
     return render_template("admins/pending-request.html")
 
-@admins.route("/view_company")
+@admins.route("/view_companies")
 @login_required
-def view_company():
-    return render_template("admins/view_company.html")
+def view_companies():
+    companies = Company.query.all()
+    return render_template("admins/view_companies.html", companies=companies)
 
 @admins.route("/banned-users")
 @login_required
