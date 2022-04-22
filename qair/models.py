@@ -187,7 +187,7 @@ class Airplane(db.Model):
     
 class Route(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    company_id = db.Column(db.Integer, db.ForeignKey("comapany.id"))
+    company_id = db.Column(db.Integer, db.ForeignKey("company.id"))
     origin = db.Column(db.String)
     destination = db.Column(db.String)
     distance = db.Column(db.Integer)
