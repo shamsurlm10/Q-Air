@@ -24,17 +24,30 @@ class CreateCompany(FlaskForm):
     ], render_kw={"placeholder": "Company Name"})
     save = SubmitField("Create")
     
-# class CreateFlight(FlaskForm):
-#     flight_name = StringField("Flight Name", validators=[
-#         DataRequired(), Length(max=40, min=2)
-#     ], render_kw={"placeholder": "Flight Name"})
-#     airplane_name = StringField("Airplane Name", validators=[
-#         DataRequired(), Length(max=40, min=2)
-#     ], render_kw={"placeholder": "Airplane Name"})
-#     departure_time = DateTimeField("Departure Time", validators=[
-#         DataRequired(), Length(max=40, min=2)
-#     ], render_kw={"placeholder": "Departure Time"})
-#     save = SubmitField("Create")
+class CreateFlight(FlaskForm):
+    flight_name = StringField("Flight Name", validators=[
+        DataRequired(), Length(max=40, min=2)
+    ], render_kw={"placeholder": "Flight Name"})
+    airplane_name = StringField("Airplane Name", validators=[
+        DataRequired(), Length(max=40, min=2)
+    ], render_kw={"placeholder": "Airplane Name"})
+    departure_time = DateTimeField("Departure Time", validators=[
+        DataRequired(), Length(max=40, min=2)
+    ], render_kw={"placeholder": "Departure Time"})
+    save = SubmitField("Create")
+    
+class EditFlight(FlaskForm):
+    flight_name = StringField("Flight Name", validators=[
+        DataRequired(), Length(max=40, min=2)
+    ], render_kw={"placeholder": "Flight Name"})
+    airplane_name = StringField("Airplane Name", validators=[
+        DataRequired(), Length(max=40, min=2)
+    ], render_kw={"placeholder": "Airplane Name"})
+    departure_time = DateTimeField("Departure Time", validators=[
+        DataRequired(), Length(max=40, min=2)
+    ], render_kw={"placeholder": "Departure Time"})
+    update = SubmitField("Update")
+    delete = SubmitField("Delete")
 
 class CreateRoute(FlaskForm):
     origin = StringField("Origin", validators=[
@@ -48,3 +61,34 @@ class CreateRoute(FlaskForm):
     duration = IntegerField("Duration", validators=[
         DataRequired()], render_kw={"placeholder": "Duration"})
     save = SubmitField("Create")
+    
+class AddPlanes(FlaskForm):
+    airplane_name = StringField("Airplane Name", validators=[
+        DataRequired(), Length(max=40, min=2)
+    ], render_kw={"placeholder": "Airplane Name"})
+    
+    airplane_model = StringField("Airplane Model", validators=[
+        DataRequired(), Length(max=40, min=2)
+    ], render_kw={"placeholder": "Airplane Model"})
+    
+    passenger_capacity = IntegerField("Passenger Capacity", validators=[
+        DataRequired()
+    ], render_kw={"placeholder": "Passenger Capacity"})
+    
+    create = SubmitField("Create")
+    
+class EditPlanes(FlaskForm):
+     airplane_name = StringField("Airplane Name", validators=[
+        DataRequired(), Length(max=40, min=2)
+    ], render_kw={"placeholder": "Airplane Name"})
+    
+     airplane_model = StringField("Airplane Model", validators=[
+        DataRequired(), Length(max=40, min=2)
+    ], render_kw={"placeholder": "Airplane Model"})
+    
+     passenger_capacity = IntegerField("Passenger Capacity", validators=[
+        DataRequired()
+    ], render_kw={"placeholder": "Passenger Capacity"})
+    
+     update = SubmitField("Update")
+     delete = SubmitField("Delete")

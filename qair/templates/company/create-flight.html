@@ -5,47 +5,64 @@
 <div class="container form-brand mt-1">
     <div class="row">
         <div class="col-xl-6 offset-xl-3 col-md-8 offset-md-2 ps-5">
-            <div>
                 <div class="card card-company card-body shadow-card p-4">
-                    <div class="row">    
-                        <div class="mt-1">
-                            <div class="card card-body shadow-card card-size">
-                                <div class="d-flex flex-row">
-                                    <div class="d-flex flex-column text-color">
-                                        flight name
-                                    </div>
+                <form method="POST" class="w-100">
+                    {{ form.hidden_tag() }}
+                    <div class="mt-4">
+                        <div class="mb-2">
+                            {% if form.flight_name.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in form.flight_name.errors %}
+                                <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.flight_name(class="form-control", id="flight_name") }}
+                            {% endif %}
+                        </div>
+                        <!-- <div class="mt-4">
+                            <div class="mb-2">
+                                {% if form.airplane_name.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in form.airplane_name.errors %}
+                                    <span>{{ error }}</span>
+                                    {% endfor %}
                                 </div>
+                                {% else %}
+                                {{ form.airplane_name(class="form-control", id="airplane_name") }}
+                                {% endif %}
+                            </div>
+                        </div> -->
+                        <div class="mt-4 mb-2">
+                            <select name="plane-name" class="form-control" id="plane-name">
+                                {% if len(airplanes) <= 0 %}
+                                <option value="" class="disabled">No Airplane Found</option>
+                                {% else %}
+                                {% for plane in airplanes %}
+                                <option value="{{ plane.id }}">{{ plane.name }}</option>
+                                {% endfor %}
+                                {% endif %}
+                            </select>
+                        </div>
+                        <div class="mt-4">
+                            <div class="mb-2">
+                                {% if form.departure_time.errors %}
+                                <div class="invalid-feedback">
+                                    {% for error in form.departure_time.errors %}
+                                    <span>{{ error }}</span>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                {{ form.departure_time(class="form-control", id="airplane_name") }}
+                                {% endif %}
                             </div>
                         </div>
-                        
-                    </div>
-                    <div class="row">    
-                        <div class="mt-1">
-                            <div class="card card-body shadow-card card-size">
-                                <div class="d-flex flex-row">
-                                    <div class="d-flex flex-column text-color">
-                                        Airplane name
-                                    </div>
-                                </div>
-                            </div>
+                        <div class="mt-2">
+                            {{form.save(class="btn btn-get")}}
                         </div>
-                        
                     </div>
-                    <div class="row">    
-                        <div class="mt-1">
-                            <div class="card card-body shadow-card card-size">
-                                <div class="d-flex flex-row">
-                                    <div class="d-flex flex-column text-color">
-                                        Departure Time
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-                    <button class="btn-get mt-1" type="submit">Create</button>
+                </form>
                 </div>
-            </div>
         </div>
     </div>
 </div>

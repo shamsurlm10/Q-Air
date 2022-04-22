@@ -119,6 +119,7 @@ class Company(db.Model):
     # flight = db.relationship("Flight", backref="company", uselist=False)
     # airplane = db.relationship("Airplan", backref="company", uselist=False)
     route = db.relationship("Route", backref="company")
+    airplanes = db.relationship("Airplane", backref="company")
     profile_photo = db.Column(
         db.String, default="/image/default/ProfilePhotos/default.png"
     )
@@ -128,8 +129,9 @@ class Company(db.Model):
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
     
-    def __init__(self,company_name:str)-> None:
+    def __init__(self,company_name:str, profile_id:int)-> None:
         self.company_name = company_name
+        self.profile_id = profile_id
     
 # class CompanyRating(db.Model):
 #     company_id = db.Column(db.Integer, db.ForeignKey("comapany.id"))
@@ -163,13 +165,20 @@ class Company(db.Model):
 #     created_at = db.Column(db.DateTime, default=datetime.utcnow())
 #     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
     
-# class Airplane(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     name = db.Column(db.String)
-#     airplane_code = db.Column(db.String)
-#     company_id = db.Column(db.Integer, db.ForeignKey("company.id"))
-#     created_at = db.Column(db.DateTime, default=datetime.utcnow())
-#     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
+class Airplane(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    airplane_name = db.Column(db.String)
+    airplane_model = db.Column(db.String)
+    company_id = db.Column(db.Integer, db.ForeignKey("company.id"))
+    passenger_capacity = db.Column(db.Integer)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow())
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow())
+
+    def __init__(self, airplane_name: str, airplane_model: str, company_id: int, passerger_capacity: int):
+        self.airplane_name = airplane_name
+        self.airplane_model = airplane_model
+        self.company_id = company_id
+        self.passenger_capacity = passerger_capacity
     
 # class AirplaneRoute(db.Model):
 #     airplane_id = db.Column(db.String)

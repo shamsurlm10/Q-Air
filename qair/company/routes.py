@@ -23,24 +23,13 @@ def create_company():
         if current_user.profile.company:
             flash("You have already created an account", "danger")
             return redirect(url_for('mains.homepage'))
-        company = Company(form.company_name.data)
+        company = Company(form.company_name.data, current_user.profile.id)
         db.session.add(company)
         db.session.commit()
         flash(f"Company created", "success")
         return redirect(url_for("company.add_planes"))
     return render_template("company/create-company.html", form=form)
 
-
-@company.route("/add-planes")
-@login_required
-def add_planes():
-    return render_template("company/add-planes.html")
-
-
-@company.route("/edit-planes")
-@login_required
-def edit_planes():
-    return render_template("company/edit-planes.html")
 
 
 @company.route("/edit-company", methods=["POST", "GET"])
@@ -104,17 +93,32 @@ def remove_cover_photo():
         flash("Cannot remove default cover photo.", "danger")
     return redirect(url_for("company.edit_company"))
 
-@company.route("/create-flight")
+@company.route("/create-flight", methods=["POST", "GET"])
 @login_required
 def create_flight():
-    # form = 
-    return render_template("company/create-flight.html")
+    form = CreateFlight()
+    airplanes = current_user.profile.company.airplanes
+    return render_template("company/create-flight.html", form=form, airplanes=airplanes, len=len)
 
 
-@company.route("/edit-flight")
+@company.route("/edit-flight", methods=["POST", "GET"])
 @login_required
 def edit_flight():
-    return render_template("company/edit-flight.html")
+    form = EditFlight()
+    airplanes = current_user.profile.company.airplanes
+    return render_template("company/edit-flight.html", form=form, airplanes=airplanes, len=len)
+
+@company.route("/add-planes", methods=["POST", "GET"])
+@login_required
+def add_planes():
+    form = AddPlanes()
+    return render_template("company/add-planes.html", form=form)
+
+@company.route("/edit-planes", methods=["POST", "GET"])
+@login_required
+def edit_planes():
+    form = EditPlanes()
+    return render_template("company/edit-planes.html", form=form)
 
 
 @company.route("/create-route", methods=["POST", "GET"])
