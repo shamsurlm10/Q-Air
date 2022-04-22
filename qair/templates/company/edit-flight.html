@@ -28,6 +28,18 @@ Flight {% endblock %} {% block sub_content %}
                   {% endif %}
               </select>
             </div>
+            <div class="mt-4 mb-2">
+              <select name="plane-name" class="form-control" id="plane-name">
+                  {% if len(routes) <= 0 %}
+                  <option value="" class="disabled">No Route Found</option>
+                  {% else %}
+                  <option value="" disabled selected>Select Route</option>
+                  {% for route in routes %}
+                  <option value="{{ route.id }}">{{ route.origin }} - {{ route.destination }}</option>
+                  {% endfor %}
+                  {% endif %}
+              </select>
+          </div>
             <div class="mt-4">
               <div class="mb-2">
                 {% if form.departure_time.errors %}

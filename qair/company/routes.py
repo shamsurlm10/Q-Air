@@ -98,7 +98,9 @@ def remove_cover_photo():
 def create_flight():
     form = CreateFlight()
     airplanes = current_user.profile.company.airplanes
-    return render_template("company/create-flight.html", form=form, airplanes=airplanes, len=len)
+    routes = current_user.profile.company.routes
+    print(len(routes))
+    return render_template("company/create-flight.html", form=form, airplanes=airplanes, len=len, routes=routes)
 
 
 @company.route("/edit-flight", methods=["POST", "GET"])
@@ -106,7 +108,8 @@ def create_flight():
 def edit_flight():
     form = EditFlight()
     airplanes = current_user.profile.company.airplanes
-    return render_template("company/edit-flight.html", form=form, airplanes=airplanes, len=len)
+    routes = current_user.profile.company.routes
+    return render_template("company/edit-flight.html", form=form, airplanes=airplanes, len=len, routes=routes)
 
 @company.route("/add-planes", methods=["POST", "GET"])
 @login_required

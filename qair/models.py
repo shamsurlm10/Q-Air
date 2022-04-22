@@ -118,7 +118,7 @@ class Company(db.Model):
     profile_id = db.Column(db.Integer, db.ForeignKey("profile.id"))
     # flight = db.relationship("Flight", backref="company", uselist=False)
     # airplane = db.relationship("Airplan", backref="company", uselist=False)
-    route = db.relationship("Route", backref="company")
+    routes = db.relationship("Route", backref="company")
     airplanes = db.relationship("Airplane", backref="company")
     profile_photo = db.Column(
         db.String, default="/image/default/ProfilePhotos/default.png"
