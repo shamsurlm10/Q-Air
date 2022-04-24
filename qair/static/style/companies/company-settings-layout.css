@@ -118,3 +118,14 @@
     border-radius: 5px;
     padding: 5px 10px;
 }
+
+.airplane-bg {
+    background-image: url('https://d1a85ew9886hk0.cloudfront.net/squaremouth.com/sites/5/AdobeStock_50224798.jpeg');
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.9;
+}
+
+.airplane-bg-body {
+    color: #ffffff;
+}
