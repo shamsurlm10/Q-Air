@@ -52,9 +52,9 @@
     
 }
 
-.company-profile-photo {
+.profile-photo {
     border: 1px solid #f5f4f4;
-    margin-top: 5px;
+    margin-top: -50px;
     border-radius: 20%;
     height: 200px;
     width: 200px;
@@ -117,4 +117,20 @@
     border: none;
     border-radius: 5px;
     padding: 5px 10px;
+}
+.btn-custom,.btn-custom:hover{
+    background-color: #034C80;
+    color: #F1F1F1;
+    width: 100%;
+    margin-top: 0px;
+}
+.btn-a{
+    color: #FBFBFB;
+    background-color: #034C80;
+    width: 100%;
+    
+}
+
+.ts{
+    text-size-adjust: 30px;
 }

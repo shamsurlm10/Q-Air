@@ -10,13 +10,13 @@
   <div class="row">
     <div class="col-md-8 offset-md-2">
       <div>
-        <img src="{{ url_for('static', filename='image/default/CoverPhotos/default.png')}}" alt="Cover photo"
+        <img src="{{url_for('static', filename= company.cover_photo)}}" alt="Cover photo"
           class="cover-photo">
 
       </div>
       <div class="d-flex-custom">
         <div class="profile-photo-container d-flex">
-          <img src="{{ url_for('static', filename='image/default/ProfilePhotos/default.jpg')}}" alt="Profile Photo"
+          <img src="{{url_for('static', filename= company.profile_photo)}}" alt="Profile Photo"
             class="profile-photo">
           <div class="mt-3 mx-4">
             <strong>Demra Airlines</strong>
@@ -37,51 +37,51 @@
       </div>
 
       <div class="row d-flex-3 mt-3  mx-3 col-md-12">
-        <div class="card mx-2 my-3" style="width: 16rem;">
+        <div class="card mx-2 my-3 p-0" style="width: 16rem;">
           <img class="card-img-top" src="https://cdn.britannica.com/69/155469-131-14083F59/airplane-flight.jpg"
             alt="Card image cap">
-          <div class="card-body" ; style="text-align: center;">
-            <a href="#">Discover a trip</a>
+          <div class="card-body card-footer" ; style="text-align: center;">
+            <a class="btn btn-a" href="{{url_for('mains.explore')}}" style="text-decoration: none">Discover a trip</a>
           </div>
         </div>
-        <div class="card mx-2 my-3" style="width: 16rem;">
+        <div class="card mx-2 my-3 p-0" style="width: 16rem;">
           <img class="card-img-top" src="https://cdn.britannica.com/69/155469-131-14083F59/airplane-flight.jpg"
             alt="Card image cap">
-          <div class="card-body" ; style="text-align: center;">
-            <a href="#">Airplanes & Flights</a>
+          <div class="card-body card-footer" ; style="text-align: center;">
+            <a class="btn btn-a" href="#" style="text-decoration: none">Airplanes & Flights</a>
           </div>
         </div>
-        <div class="card mx-2 my-3" style="width: 16rem;">
+        <div class="card mx-2 my-3 p-0" style="width: 16rem;">
           <img class="card-img-top" src="https://cdn.britannica.com/69/155469-131-14083F59/airplane-flight.jpg"
             alt="Card image cap">
-          <div class="card-body" ; style="text-align: center;">
-            <a href="#">Travel requirements</a>
+          <div class="card-body card-footer" ; style="text-align: center;">
+            <a class="btn btn-a" href="#" style="text-decoration: none">Travel requirements</a>
           </div>
         </div>
-        <div class="card mx-2 my-3" style="width: 16rem;">
+        <div class="card mx-2 my-3 p-0" style="width: 16rem;">
           <img class="card-img-top" src="https://cdn.britannica.com/69/155469-131-14083F59/airplane-flight.jpg"
             alt="Card image cap">
-          <div class="card-body" ; style="text-align: center;">
-            <a href="#">Safty Measures</a>
+          <div class="card-body card-footer" ; style="text-align: center;">
+            <a class="btn btn-a" href="#" style="text-decoration: none">Safty Measures</a>
           </div>
         </div>
-        <div class="card mx-2 my-3" style="width: 16rem;">
+        <div class="card mx-2 my-3 p-0" style="width: 16rem;">
           <img class="card-img-top" src="https://cdn.britannica.com/69/155469-131-14083F59/airplane-flight.jpg"
             alt="Card image cap">
-          <div class="card-body" ; style="text-align: center;">
-            <a href="#">Contact US</a>
+          <div class="card-body card-footer" ; style="text-align: center;">
+            <a class="btn btn-a" href="#" style="text-decoration: none">Contact US</a>
           </div>
         </div>
       </div>
 
 
 
-      <div class="my-3 d-flex">
+      <div class="my-3">
         <div class="container form-brand mt-1">
           <div class="row">
 
             <div class="card card-view-company card-body shadow-card p-4">
-              <b>User Reviews</b>
+              <b class="ts">User Reviews</b>
               
               <div class="row mt-1">
 
@@ -101,16 +101,6 @@
                 </div>
 
               </div>
-            </div>
-
-          </div>
-        </div>
-        <div class="container form-brand mt-1">
-          <div class="row">
-
-            <div class="card card-view-company card-body shadow-card p-4">
-              <b>About Us</b>
-              details
             </div>
 
           </div>

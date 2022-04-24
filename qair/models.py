@@ -75,6 +75,7 @@ class Profile(db.Model):
     contact_no = db.Column(db.String(11))
     # notification = db.relationship("Notification", backref="profile")
     address = db.relationship("Address", backref="profile", uselist=False)
+    reviews = db.relationship("Review", backref="profile")
     company = db.relationship("Company", backref="company", uselist=False)
     # flight_bookmarks = db.Column(db.ARRAY(db.Integer), default=[])
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
@@ -111,6 +112,21 @@ class Address(db.Model):
     ) -> None:
         self.profile_id = profile_id
 
+class Review(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    description = db.Column(db.String)
+    rating = db.Column(db.Integer)
+    profile_id = db.Column(db.Integer, db.ForeignKey("profile.id"))
+    company_id = db.Column(db.Integer, db.ForeignKey("company.id"))
+    created_at = db.Column(db.DateTime, default=datetime.utcnow())
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow())
+    
+    def __init__(
+        self,
+        profile_id: int,
+    ) -> None:
+        self.profile_id = profile_id 
+ 
     
 class Company(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -126,6 +142,7 @@ class Company(db.Model):
     cover_photo = db.Column(
         db.String, default="/image/default/CoverPhotos/default.png"
     )
+    reviews = db.relationship("Review", backref="company")
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
     
