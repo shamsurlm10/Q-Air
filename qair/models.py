@@ -13,6 +13,8 @@ def load_user(id):
     return User.query.get(int(id))
 
 # Models
+
+
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(150), nullable=False, unique=True)
@@ -29,7 +31,6 @@ class User(db.Model, UserMixin):
         self.email = email
         self.password = password
         self.verified_code = verified_code
-
 
     def get_joindate(self):
         return self.created_at.strftime("%B, %Y")
@@ -59,14 +60,14 @@ class User(db.Model, UserMixin):
             }
         return {"is_authenticate": True, "message": "Password successfully changed."}
 
-        
 
 class Profile(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     full_name = db.Column(db.String(50), nullable=False)
     dob = db.Column(db.DateTime)
     gender = db.Column(db.String)
-    profile_photo = db.Column(db.String, default="/image/default/ProfilePhotos/default.jpg")
+    profile_photo = db.Column(
+        db.String, default="/image/default/ProfilePhotos/default.jpg")
     cover_photo = db.Column(
         db.String, default="/image/default/CoverPhotos/default.png"
     )
@@ -79,7 +80,7 @@ class Profile(db.Model):
     # flight_bookmarks = db.Column(db.ARRAY(db.Integer), default=[])
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
-    
+
     def __init__(
         self,
         full_name: str,
@@ -87,13 +88,13 @@ class Profile(db.Model):
     ) -> None:
         self.full_name = full_name
         self.user_id = user_id
-    
+
     def getDateOfBirth(self):
         return self.dob.strftime("%d %B, %Y")
-    
+
     def __str__(self) -> str:
         return f'{self.full_name} {self.user_id}'
-    
+
 
 class Address(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -104,14 +105,14 @@ class Address(db.Model):
     city = db.Column(db.String)
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
-    
+
     def __init__(
         self,
         profile_id: int,
     ) -> None:
         self.profile_id = profile_id
 
-    
+
 class Company(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     company_name = db.Column(db.String, nullable=False)
@@ -128,14 +129,14 @@ class Company(db.Model):
     )
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
-    
-    def __init__(self,company_name:str, profile_id:int)-> None:
+
+    def __init__(self, company_name: str, profile_id: int) -> None:
         self.company_name = company_name
         self.profile_id = profile_id
-        
+
     def getFoundedDate(self):
         return self.created_at.strftime("%d %B, %Y")
-    
+
 # class CompanyRating(db.Model):
 #     company_id = db.Column(db.Integer, db.ForeignKey("comapany.id"))
 #     profile_id = db.Column(db.Integer, db.ForeignKey("profile.id"))
@@ -143,16 +144,16 @@ class Company(db.Model):
 #     rating = db.Column(db.Integer(5))
 #     created_at = db.Column(db.DateTime, default=datetime.utcnow())
 #     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
-    
+
 # class Notification(db.Model, UserMixin):
 #     id = db.Column(db.Integer, primary_key=True)
-#     message = db.Column(db.String(250), nullable=False) 
+#     message = db.Column(db.String(250), nullable=False)
 #     link = db.Column(db.String, nullable=False)
 #     profile_id = db.Column(db.Integer, db.ForeignKey("profile.id"))
 #     is_readed = db.Column(db.Boolean, default=False)
 #     created_at = db.Column(db.DateTime, default=datetime.utcnow())
 #     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
-    
+
 # class Flight(db.Model):
 #     id = db.Column(db.Integer, primary_key=True)
 #     company_id = db.Column(db.Integer, db.ForeignKey("company.id"))
@@ -167,7 +168,8 @@ class Company(db.Model):
 #     cost = db.Column(db.Integer(15))
 #     created_at = db.Column(db.DateTime, default=datetime.utcnow())
 #     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
-    
+
+
 class Airplane(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     airplane_name = db.Column(db.String)
@@ -182,12 +184,13 @@ class Airplane(db.Model):
         self.airplane_model = airplane_model
         self.company_id = company_id
         self.passenger_capacity = passerger_capacity
-    
+
 # class AirplaneRoute(db.Model):
 #     airplane_id = db.Column(db.String)
 #     created_at = db.Column(db.DateTime, default=datetime.utcnow())
 #     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
-    
+
+
 class Route(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     company_id = db.Column(db.Integer, db.ForeignKey("company.id"))
@@ -197,14 +200,14 @@ class Route(db.Model):
     duration = db.Column(db.Integer)
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
-    
-    def __init__(self,origin:str,destination:str,distance:int,duration:int, company_id:int)-> None:
+
+    def __init__(self, origin: str, destination: str, distance: int, duration: int, company_id: int) -> None:
         self.origin = origin
         self.destination = destination
         self.distance = distance
         self.duration = duration
         self.company_id = company_id
-    
+
 # class Reservation(db.Model):
 #     id = db.Column(db.Integer, primary_key=True)
 #     profile_id = db.Column(db.Integer, db.ForeignKey("profile.id"))
