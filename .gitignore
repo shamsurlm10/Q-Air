@@ -1,4 +1,5 @@
 virt/
+venv/
 .DS_Store
 .env
 .flaskenv

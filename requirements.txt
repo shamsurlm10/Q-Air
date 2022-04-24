@@ -41,7 +41,6 @@ matplotlib-inline==0.1.3
 mypy-extensions==0.4.3
 mysqlclient==2.0.3
 nest-asyncio==1.5.4
-numpy==1.21.2
 parso==0.8.3
 pathspec==0.9.0
 pickleshare==0.7.5

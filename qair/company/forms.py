@@ -2,7 +2,7 @@ from flask_login import current_user
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileAllowed
 from wtforms import (FileField, PasswordField, StringField, SubmitField,
-                     IntegerField, DateTimeField)
+                     IntegerField, DateTimeLocalField)
 from wtforms.validators import (URL, DataRequired, EqualTo, Length, Optional,
                                 ValidationError)
 
@@ -31,9 +31,7 @@ class CreateFlight(FlaskForm):
     airplane_name = StringField("Airplane Name", validators=[
         DataRequired(), Length(max=40, min=2)
     ], render_kw={"placeholder": "Airplane Name"})
-    departure_time = DateTimeField("Departure Time", validators=[
-        DataRequired(), Length(max=40, min=2)
-    ], render_kw={"placeholder": "Departure Time"})
+    departure_time = DateTimeLocalField("Depart time", format='%Y-%m-%dT%H:%M', validators=[DataRequired()])
     save = SubmitField("Create")
     
 class EditFlight(FlaskForm):
@@ -43,7 +41,7 @@ class EditFlight(FlaskForm):
     airplane_name = StringField("Airplane Name", validators=[
         DataRequired(), Length(max=40, min=2)
     ], render_kw={"placeholder": "Airplane Name"})
-    departure_time = DateTimeField("Departure Time", validators=[
+    departure_time = DateTimeLocalField("Departure Time", validators=[
         DataRequired(), Length(max=40, min=2)
     ], render_kw={"placeholder": "Departure Time"})
     update = SubmitField("Update")
