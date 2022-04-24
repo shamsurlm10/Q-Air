@@ -1,5 +1,6 @@
 from datetime import datetime
 from email import message
+from email.policy import default
 from mimetypes import init
 
 from flask_login import UserMixin
@@ -13,14 +14,13 @@ from qair import app, db, login_manager
 def load_user(id):
     return User.query.get(int(id))
 
-# Models
-
 
 class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(150), nullable=False, unique=True)
     password = db.Column(db.String, nullable=False)
     is_verified = db.Column(db.Boolean, default=False)
+    is_admin = db.Column(db.Boolean, default=False)
     verified_code = db.Column(db.String)
     profile = db.relationship("Profile", backref="user", uselist=False)
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
@@ -102,17 +102,26 @@ class Address(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     street = db.Column(db.String)
     postal_code = db.Column(db.Integer)
-    profile_id = db.Column(db.Integer, db.ForeignKey("profile.id"))
     country = db.Column(db.String)
     city = db.Column(db.String)
+    profile_id = db.Column(db.Integer, db.ForeignKey("profile.id"))
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
 
     def __init__(
         self,
-        profile_id: int,
+        street: str,
+        postal_code: int,
+        country: str,
+        city: str,
+        profile_id: int
     ) -> None:
+        self.street = street
+        self.postal_code = postal_code
+        self.country = country
+        self.city = city
         self.profile_id = profile_id
+
 
 class Review(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -122,14 +131,19 @@ class Review(db.Model):
     company_id = db.Column(db.Integer, db.ForeignKey("company.id"))
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
-    
+
     def __init__(
         self,
+        rating: int,
+        description: str,
         profile_id: int,
+        company_id: int
     ) -> None:
-        self.profile_id = profile_id 
- 
-    
+        self.rating = rating
+        self.description = description
+        self.profile_id = profile_id
+        self.company_id = company_id
+
 
 class Company(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -173,6 +187,7 @@ class Company(db.Model):
 #     created_at = db.Column(db.DateTime, default=datetime.utcnow())
 #     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
 
+
 class Flight(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     route_id = db.Column(db.Integer, db.ForeignKey("route.id"))
@@ -181,8 +196,8 @@ class Flight(db.Model):
     depart_time = db.Column(db.DateTime)
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
-    
-    def __init__(self, airplane_id: int, flight_name: str, depart_time:datetime, route_id:int) -> None:
+
+    def __init__(self, airplane_id: int, flight_name: str, depart_time: datetime, route_id: int) -> None:
         self.airplane_id = airplane_id
         self.flight_name = flight_name
         self.depart_time = depart_time

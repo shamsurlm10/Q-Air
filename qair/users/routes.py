@@ -2,13 +2,15 @@ import os
 
 from flask import (Blueprint, flash, redirect, render_template, request,
                    session, url_for)
-from qair.users.forms import RegisterForm, LoginForm, ResetPasswordForm
+from flask_login import current_user, login_required
+from flask_login import login_user as login_user_function
+from flask_login import logout_user as logout_user_function
 from qair import bcrypt, db
-from qair.models import Address, User, Profile
-from flask_login import login_user as login_user_function, login_required, logout_user as logout_user_function, current_user
-from qair.users.utils import generate_token, password_reset_key_mail_body
 from qair.mails import send_mail
-from qair.users.forms import ForgetPasswordForm, ResetPasswordForm
+from qair.models import Address, Profile, User
+from qair.users.forms import (ForgetPasswordForm, LoginForm, RegisterForm,
+                              ResetPasswordForm)
+from qair.users.utils import generate_token, password_reset_key_mail_body
 
 users = Blueprint("users", __name__, url_prefix="/users")
 
@@ -49,7 +51,10 @@ def register_user():
             form.password.data).decode("utf-8")
         hashed_token = bcrypt.generate_password_hash(
             generated_token_for_email).decode("utf-8")
+        all_users = User.query.all()
         user = User(form.email.data, hashed_password, hashed_token)
+        if len(all_users) == 0:
+            user.is_admin = True
         db.session.add(user)
         db.session.commit()
         # Creating a Profile
@@ -57,7 +62,7 @@ def register_user():
         db.session.add(profile)
         db.session.commit()
         # Creating Address
-        address = Address(profile.id)
+        address = Address(None, None, None, None, profile.id)
         db.session.add(address)
         db.session.commit()
         # Sending Email

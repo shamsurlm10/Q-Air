@@ -5,7 +5,7 @@ from flask_login import current_user, login_required
 from qair import bcrypt, db
 from qair.company.forms import *
 from qair.company.utils import remove_photo, save_photos
-from qair.models import Airplane, Company, Flight, Route
+from qair.models import Airplane, Company, Flight, Review, Route
 
 company = Blueprint("company", __name__, url_prefix="/company")
 
@@ -187,3 +187,21 @@ def create_route():
         flash("Route Created.", "success")
         return redirect(url_for("company.edit_company"))
     return render_template("company/create-route.html", form=form)
+
+
+@company.route("/review-company/<int:id>", methods=["POST"])
+@login_required
+def review_company(id: int):
+    if current_user.profile.company and current_user.profile.company.id == id:
+        flash("Your cannot review your own company!", "danger")
+        return redirect(url_for("company.view_company", id=id))
+    rating = request.form.get('rating')
+    rating_desc = request.form.get('rating-desc')
+    if not rating or not rating_desc:
+        flash('Please select the rating and description.', 'danger')
+        return redirect(url_for("company.view_company", id=id))
+    review = Review(int(rating), rating_desc, current_user.profile.id, id)
+    db.session.add(review)
+    db.session.commit()
+    flash("Review added successfully.", "success")
+    return redirect(url_for("company.view_company", id=id))

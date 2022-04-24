@@ -12,6 +12,7 @@
                         {{ form.hidden_tag()}}
                         <div class="mt-4">
                             <div class="mb-2">
+                                {{ form.company_name.label(class="form-label mb-0 text-deg") }}
                                 {% if form.company_name.errors %}
                                 <div class="invalid-feedback">
                                     {% for error in form.company_name.errors %}
@@ -43,11 +44,6 @@
                                 {{ form.profile_photo(class="form-control", id="profile_photo")}}
                             </div>
                             {% endif %}
-                            <div class="mt-2">
-                                {{form.save(class="btn btn-dark btn-update")}}
-                                <a href="{{ url_for('company.remove_profile_photo') }}" type="button"
-                                    class="btn btn-delete">Delete</a>
-                            </div>
                         </div>
                         <div class="mt-4">
                             {{ form.cover_photo.label(class="form-label mb-0 text-deg") }} <br>

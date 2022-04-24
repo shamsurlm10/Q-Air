@@ -21,7 +21,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light" style="background-color: #e3f2fd;">
         <div class="container">
-            <a class="navbar-brand" href="#"><b>QAir</b></a>
+            <a class="navbar-brand" href="{{ url_for('mains.homepage') }}"><b>QAir</b></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -52,20 +52,27 @@
                 <div class="d-flex ms-auto">
                     {% if current_user.profile %}
                     <ul class="navbar-nav">
+                        {% if current_user.profile.company %}
                         <li><a class="nav-link" href="{{ url_for('company.create_route') }}">Create Route</a></li>
+                        {% else %}
                         <li><a class="nav-link" href="{{ url_for('company.create_company') }}">Create Company</a></li>
+                        {% endif %}
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
                                 data-bs-toggle="dropdown" aria-expanded="false">
-                                Shamsur
+                                {{ current_user.profile.full_name }}
                             </a>
                             <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                                <li><a class="dropdown-item" href="{{ url_for('users.view_user_profile') }}">Profile</a></li>
+                                <li><a class="dropdown-item" href="{{ url_for('users.view_user_profile') }}">View Profile</a></li>
+                                {% if current_user.profile.company %}
                                 <li><a class="dropdown-item" href="{{ url_for('company.create_flight') }}">Your Company</a></li>
+                                {% endif %}
                                 <li><a class="dropdown-item" href="{{ url_for('users.logout_user') }}">Logout</a></li>
                             </ul>
                         </li>
-                        <li><a class="nav-link" href="{{ url_for('admins.dashboard') }}">Admins</a></li>
+                        {% if current_user.is_admin %}
+                        <li><a class="nav-link" href="{{ url_for('admins.dashboard') }}">Admin Dashboard</a></li>
+                        {% endif %}
                     </ul>
                     {% else %}
                     <ul class="navbar-nav">
