@@ -1,5 +1,6 @@
 from datetime import datetime
 from email import message
+from mimetypes import init
 
 from flask_login import UserMixin
 from itsdangerous import TimedSerializer
@@ -154,13 +155,20 @@ class Company(db.Model):
 #     created_at = db.Column(db.DateTime, default=datetime.utcnow())
 #     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
 
-# class Flight(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     company_id = db.Column(db.Integer, db.ForeignKey("company.id"))
-#     airplane_id = db.Column(db.Integer, db.ForeignKey("airplane.id"))
-#     depart_time = db.Column(db.DateTime)
-#     created_at = db.Column(db.DateTime, default=datetime.utcnow())
-#     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
+class Flight(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    route_id = db.Column(db.Integer, db.ForeignKey("route.id"))
+    airplane_id = db.Column(db.Integer, db.ForeignKey("airplane.id"))
+    flight_name = db.Column(db.String, nullable=False)
+    depart_time = db.Column(db.DateTime)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow())
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow())
+    
+    def __init__(self, airplane_id: int, flight_name: str, depart_time:datetime, route_id:int) -> None:
+        self.airplane_id = airplane_id
+        self.flight_name = flight_name
+        self.depart_time = depart_time
+        self.route_id = route_id
 
 # class FlightClass(db.Model):
 #     class_name = db.Column(db.String)
@@ -174,6 +182,7 @@ class Airplane(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     airplane_name = db.Column(db.String)
     airplane_model = db.Column(db.String)
+    flights = db.relationship("Flight", backref="airplane")
     company_id = db.Column(db.Integer, db.ForeignKey("company.id"))
     passenger_capacity = db.Column(db.Integer)
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
@@ -194,6 +203,7 @@ class Airplane(db.Model):
 class Route(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     company_id = db.Column(db.Integer, db.ForeignKey("company.id"))
+    flights = db.relationship("Flight", backref="route")
     origin = db.Column(db.String)
     destination = db.Column(db.String)
     distance = db.Column(db.Integer)

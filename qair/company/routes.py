@@ -5,7 +5,7 @@ from flask_login import current_user, login_required
 from qair import bcrypt, db
 from qair.company.forms import *
 from qair.company.utils import remove_photo, save_photos
-from qair.models import Airplane, Company, Route
+from qair.models import Airplane, Company, Flight, Route
 
 company = Blueprint("company", __name__, url_prefix="/company")
 
@@ -103,7 +103,16 @@ def create_flight():
     form = CreateFlight()
     airplanes = current_user.profile.company.airplanes
     routes = current_user.profile.company.routes
-    print(len(routes))
+    if request.method == "POST":
+        plane = request.form.get("plane-name")
+        route = request.form.get("route-name")
+        if not plane or not route:
+            flash("Route or Plane should be selected", "danger")
+        else:
+            flight = Flight(int(plane), form.flight_name.data, form.departure_time.data, int(route))
+            db.session.add(flight)
+            db.session.commit()
+            flash("Flight Created", "success")
     return render_template("company/create-flight.html", form=form, airplanes=airplanes, len=len, routes=routes)
 
 
@@ -113,6 +122,7 @@ def edit_flight():
     form = EditFlight()
     airplanes = current_user.profile.company.airplanes
     routes = current_user.profile.company.routes
+    
     return render_template("company/edit-flight.html", form=form,  airplanes=airplanes, len=len, routes=routes)
 
 
