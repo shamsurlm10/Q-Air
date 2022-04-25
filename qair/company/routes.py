@@ -109,21 +109,41 @@ def create_flight():
         if not plane or not route:
             flash("Route or Plane should be selected", "danger")
         else:
-            flight = Flight(int(plane), form.flight_name.data, form.departure_time.data, int(route))
+            flight = Flight(int(plane), form.flight_name.data,
+                            form.departure_time.data, int(route))
             db.session.add(flight)
             db.session.commit()
             flash("Flight Created", "success")
     return render_template("company/create-flight.html", form=form, airplanes=airplanes, len=len, routes=routes)
 
 
-@company.route("/edit-flight", methods=["POST", "GET"])
+@company.route("/edit-flight/<int:id>", methods=["POST", "GET"])
 @login_required
-def edit_flight():
+def edit_flight(id: int):
     form = EditFlight()
+    flight = Flight.query.get(id)
     airplanes = current_user.profile.company.airplanes
     routes = current_user.profile.company.routes
-    
-    return render_template("company/edit-flight.html", form=form,  airplanes=airplanes, len=len, routes=routes)
+    if request.method == "POST":
+        # TODO
+        pass
+    plane = request.form.get("plane-name")
+    route = request.form.get("route-name")
+    form.flight_name.data = flight.flight_name
+    form.departure_time.dara = flight.depart_time
+    return render_template("company/edit-flight.html", form=form, flight=flight, airplanes=airplanes, routes=routes, len=len)
+
+
+@company.route("/view-flight")
+@login_required
+def view_flight():
+    airplanes = current_user.profile.company.airplanes
+    routes = current_user.profile.company.routes
+    flights = []
+    for plane in airplanes:
+        for flight in plane.flights:
+            flights.append(flight)
+    return render_template("company/view-flight.html", flights=flights, len=len)
 
 
 @company.route("/add-planes", methods=["POST", "GET"])

@@ -149,7 +149,7 @@ class Company(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     company_name = db.Column(db.String, nullable=False)
     profile_id = db.Column(db.Integer, db.ForeignKey("profile.id"))
-    # flight = db.relationship("Flight", backref="company", uselist=False)
+    # flights = db.relationship("Flight", backref="company")
     # airplane = db.relationship("Airplan", backref="company", uselist=False)
     routes = db.relationship("Route", backref="company")
     airplanes = db.relationship("Airplane", backref="company")

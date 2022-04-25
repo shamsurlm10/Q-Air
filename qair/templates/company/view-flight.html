@@ -1,0 +1,23 @@
+{% extends "company/company-settings-layout.html" %} {% block title %} View
+Planes {% endblock %} {% block sub_content %}
+<div class="container">
+    <div class="row">
+        {% for flight in flights %}
+        <div class="col-sm-6 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">{{ flight.flight_name }}</h5>
+                    <p class="card-text">
+                        Flight: {{ flight.flight_name }}<br>
+                        Departure Time: {{ flight.depart_time }}
+                    </p>
+                    {% if current_user.profile.company.id == flight.airplane.company_id %}
+                    <a href="{{ url_for('company.edit_flight', id=flight.id) }}" class="btn btn-sm btn-dark">Edit Flight</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

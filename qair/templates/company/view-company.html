@@ -10,13 +10,11 @@
   <div class="row">
     <div class="col-md-8 offset-md-2">
       <div>
-        <img src="{{url_for('static', filename= company.cover_photo)}}" alt="Cover photo"
-          class="cover-photo">
+        <img src="{{url_for('static', filename= company.cover_photo)}}" alt="Cover photo" class="cover-photo">
       </div>
       <div class="d-flex-custom">
         <div class="profile-photo-container d-flex">
-          <img src="{{url_for('static', filename= company.profile_photo)}}" alt="Profile Photo"
-            class="profile-photo">
+          <img src="{{url_for('static', filename= company.profile_photo)}}" alt="Profile Photo" class="profile-photo">
           <div class="mt-3 mx-4">
             <strong class="ts">{{ company.company_name }}</strong>
             <div class="text-muted">{{company.getFoundedDate()}}</div>
@@ -69,8 +67,8 @@
         </div>
       </div>
       {% if not current_user.profile.company or
-          (current_user.profile and
-            (current_user.profile.company and current_user.profile.company.id != company.id)) %}
+      (current_user.profile and
+      (current_user.profile.company and current_user.profile.company.id != company.id)) %}
       <div id="add-review" class="card card-body p-3">
         <form method="POST" action="{{ url_for('company.review_company', id=company.id) }}">
           <fieldset class="mb-2">
@@ -91,13 +89,14 @@
           <span class="ts">User Reviews</span>
           {% for review in company.reviews %}
           <div class="card card-body shadow-card my-1">
-            <div>{{ review.profile.full_name }} {% for i in range(review.rating) %} <b class="text-primary"><i class="fa-solid fa-star"></i></b> {% endfor %}</div>
+            <div>{{ review.profile.full_name }} {% for i in range(review.rating) %} <b class="text-primary"><i
+                  class="fa-solid fa-star"></i></b> {% endfor %}</div>
             <div class="text-muted">{{ review.description }}
             </div>
-        </div>
+          </div>
           {% endfor %}
+        </div>
       </div>
     </div>
   </div>
-</div>
-{% endblock %}
+  {% endblock %}

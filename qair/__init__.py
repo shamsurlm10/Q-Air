@@ -1,7 +1,5 @@
 import os
 
-from datetime import datetime, timedelta
-
 from dotenv import load_dotenv
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
@@ -67,7 +65,7 @@ from qair.admins.routes import admins
 # from flaskr.api.comment import comments
 # from flaskr.api.post import posts
 # from flaskr.api.reply import replies
-# from flaskr.events.routes import events
+from qair.reservations.routes import reservations
 from qair.mains.routes import mains
 from qair.company.routes import company
 from qair.notifications.routes import notifications
@@ -80,7 +78,7 @@ app.register_blueprint(profiles)
 app.register_blueprint(mains)
 app.register_blueprint(admins)
 app.register_blueprint(company)
-# app.register_blueprint(events)
+app.register_blueprint(reservations)
 app.register_blueprint(notifications)
 # app.register_blueprint(posts)
 # app.register_blueprint(comments)
