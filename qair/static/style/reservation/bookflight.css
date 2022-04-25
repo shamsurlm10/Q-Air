@@ -1,0 +1,168 @@
+.all-btns{
+    text-align: center;
+    height: 20vh;
+    width: 100%;
+    margin-top: 70px;
+}
+
+.menu-btns{
+    width: 170px;
+    height: 40px;
+    text-align: center;
+    text-decoration: none;
+    color: #034C80; 
+    border: none;  
+}
+.menu-btns:hover {
+    background-color: #034C80;
+    color: #FFFFFF;
+  }
+  .card-company{
+    width:500px; 
+    border:2px; 
+    background-color:#f1f1f1;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+.card-size{
+    width: 300px;
+    height: 55px;
+    border-radius: 10px;
+}
+.text-color{
+    color: #034C80;
+}
+.btn-get{
+    color: #FBFBFB;
+    background-color: #034C80;
+    width: 80px;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+
+.btn-del{
+    color: #FBFBFB;
+    background-color: #AA0000;
+    width: 80px;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    
+}
+
+.profile-photo {
+    border: 1px solid #f5f4f4;
+    margin-top: -50px;
+    border-radius: 20%;
+    height: 200px;
+    width: 200px;
+    margin-left: 20px;
+}
+
+.cover-photo {
+    border-radius: 5px;
+    height: 250px;
+    width: 100%;
+}
+.cover-photo-e {
+    height: 210px;
+    width: 100%;
+    border-radius: 10px;
+}
+.btn-book-now{
+    color: #FBFBFB;
+    background-color: #034C80;
+    width: 100%;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+.card-view-company{
+    width:300px; 
+    border:2px; 
+    background-color:#f1f1f1;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+.card-size-review{
+    width: 300px;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.text-cus{
+    color: #034C80;
+}
+.card-edit-com{
+    background-color: #f1f1f1;
+    width: 500px;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.pp-cus{
+    border: 1px solid #f5f4f4;
+    border-radius: 50%;
+    height: 200px;
+    width: 200px;
+    margin-left: 20px;
+}
+.btn-get-e{
+    color: #FBFBFB;
+    background-color: #034C80;
+    width: 140px;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+}
+.btn-custom,.btn-custom:hover{
+    background-color: #034C80;
+    color: #F1F1F1;
+    width: 100%;
+    margin-top: 0px;
+}
+.btn-a{
+    color: #FBFBFB;
+    background-color: #034C80;
+    width: 100%;
+    
+}
+
+.ts{
+    font-size: 1.5rem;
+}
+
+.airplane-bg {
+    background-image: url('https://d1a85ew9886hk0.cloudfront.net/squaremouth.com/sites/5/AdobeStock_50224798.jpeg');
+    background-repeat: no-repeat;
+    background-position: center;
+    opacity: 0.9;
+}
+
+.airplane-bg-body {
+    color: #ffffff;
+}
+
+.card-image {
+    background-image: url("https://images.unsplash.com/photo-1536514498073-50e69d39c6cf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80");
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.trip-text{
+font-style: normal;
+font-weight: 700;
+font-size: 10px;
+line-height: 14px;
+
+color: #878787;
+}
+.trip-head{
+font-style: normal;
+font-weight: 700;
+line-height: 27px;
+color: #034C80;
+}
+.font-color{
+    color: #034C80;
+}

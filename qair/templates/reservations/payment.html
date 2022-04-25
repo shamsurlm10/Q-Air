@@ -1,0 +1,135 @@
+{% extends "base.html" %}
+{% block title %} Flights {% endblock %}
+
+{% block css%}
+<link rel="stylesheet" href="{{url_for('static', filename='style/reservation/bookflight.css')}}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-2">
+    <div class="row">
+        <div class="col-md-5 mb-3">
+            <div class="card card-company card-body shadow-card p-4 w-100">
+                <h3 class="trip-head">Trip Review</h3>
+                <h5><b>Bogra to Tongi</b></h5>
+                <p class="trip-text">Monday,11 April 2022</p>
+                <hr>
+                <div class="ms-4">
+                    <div class="d-flex">
+                        <div class="flex-grow-1">
+                            <h5 class="font-color">Departure</h5>
+                            <p class="trip-text">
+                                Monday,11 April 2022 17:45-KTM <br>
+                                Bogra, Urmi Airport <br>
+                            </p>
+                        </div>
+                        <div class="">
+                            <b>Price</b><br>
+                            <p class="trip-text">
+                                1000 USD
+                            </p>
+                        </div>
+                    </div>
+                    <h5 class="font-color">Arrival</h5>
+                    <p class="trip-text">
+                        Monday, 11 April 2022 - 22:45 DOH <br>
+                        Tongi, Mohona International Airport Qatar <br>
+                    </p>
+                    <h5 class="font-color">Flight Duration</h5>
+                    <p class="trip-text">
+                        5h 10 min <br>
+                    </p>
+                    <div class="d-flex">
+                        <div class="flex-grow-1">
+                            <h5 class="font-color">Airplane</h5>
+                            <p class="trip-text">
+                                Qatar AirwaysQR 0653Airbus A330-300 <br>
+                            </p>
+                        </div>
+                        <div class="">
+                            <p class="font-color">
+                                Economy <br>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <p class="trip-text">
+                    Connection Time: 1h 5min<br>
+                </p>
+                <hr>
+                <div class="ms-4">
+                    <div class="d-flex">
+                        <div class="flex-grow-1">
+                            <h5 class="font-color">Departure</h5>
+                            <p class="trip-text">
+                                Monday,11 April 2022 17:45-KTM <br>
+                                Bogra, Urmi Airport <br>
+                            </p>
+                        </div>
+                        <div class="">
+                            <b>Price</b><br>
+                            <p class="trip-text">
+                                1000 USD
+                            </p>
+                        </div>
+                    </div>
+                    <h5 class="font-color">Arrival</h5>
+                    <p class="trip-text">
+                        Monday, 11 April 2022 - 22:45 DOH <br>
+                        Tongi, Mohona International Airport Qatar <br>
+                    </p>
+                    <h5 class="font-color">Flight Duration</h5>
+                    <p class="trip-text">
+                        5h 10 min <br>
+                    </p>
+                    <div class="d-flex">
+                        <div class="flex-grow-1">
+                            <h5 class="font-color">Airplane</h5>
+                            <p class="trip-text">
+                                Qatar AirwaysQR 0653Airbus A330-300 <br>
+                            </p>
+                        </div>
+                        <div class="">
+                            <p class="font-color">
+                                Business <br>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-7 mb-3">
+            <div class="card card-company card-body shadow-card p-4 w-100">
+                <h3 class="trip-head">Payment Option</h3>
+                <hr>
+                <div class="d-flex">
+                    <div class="flex-grow-1">
+                        <h5 class="font-color">Departure</h5>
+                        <p class="trip-text">
+                            Monday,11 April 2022 17:45-KTM <br>
+                            Bogra, Urmi Airport <br>
+                        </p>
+                    </div>
+                    <div class="">
+                        <b>Price</b><br>
+                        <p class="trip-text">
+                            1000 USD
+                        </p>
+                    </div>
+                </div>
+                <hr>
+                <h5><b>Payment Methods</b></h5>
+                <img src="https://independencevethospital.com/wp-content/uploads/2021/08/paymentoptions.jpg" alt="">
+                <a href="#" id="buy_now_btn" class="w-100 btn btn-secondary">Book the flight</a>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="http://js.stripe.com/v3/"></script>
+<script>
+    const checkout_public_key = '{{checkout_public_key}}'
+    const checkout_session_key = '{{checkout_session_id}}'
+</script>
+<script src="{{ url_for('static', filename='JS/payment/script-no-ajax.js') }}"></script>
+{% endblock %}

@@ -2,7 +2,7 @@
 {% block title %} Flights {% endblock %}
 
 {% block css%}
-<!-- <link rel="stylesheet" href="{{url_for('static', filename='style/profiles/account-setting-layout.css')}}"> -->
+<link rel="stylesheet" href="{{url_for('static', filename='style/reservation/bookflight.css')}}">
 {% endblock %}
 
 {% block content %}
@@ -10,21 +10,18 @@
     <div class="row">
         {% for flight in flights %}
         <div class="col-sm-6 mb-3">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">{{ flight.flight_name }}</h5>
-                    <p class="card-text">
-                        Flight: {{ flight.flight_name }}<br>
-                        Departure Time: {{ flight.depart_time }}<br>
-                        Airplane Model: {{ flight.airplane.airplane_model }}<br>
-                        Airplane Capacity: {{ flight.airplane.passenger_capacity }} People(s)<br>
-                        Time Duration: {{ flight.route.duration }} Hour
+                <div class="card card-company card-body shadow-card p-4 w-100 card-image">
+                    <h5 class="">{{ flight.flight_name }}</h5>
+                    <p>
+                        <b>Flight:</b> {{ flight.flight_name }}<br>
+                        <b>Departure Time:</b> {{ flight.depart_time }}<br>
+                        <b>Airplane Model:</b> {{ flight.airplane.airplane_model }}<br>
+                        <b>Airplane Capacity:</b> {{ flight.airplane.passenger_capacity }} People(s)<br>
+                        <b>Time Duration:</b> {{ flight.route.duration }} Hour
                     </p>
+                    <a href="{{url_for('reservations.payment')}}" class="w-100 btn btn-dark">Book the flight</a>
+
                 </div>
-                <div class="card-footer">
-                    <a href="#" class="w-100 btn btn-primary">Book the flight</a>
-                </div>
-            </div>
         </div>
         {% endfor %}
     </div>

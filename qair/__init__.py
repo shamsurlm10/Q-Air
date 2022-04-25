@@ -7,6 +7,7 @@ from flask_migrate import Migrate
 from flask_login import LoginManager
 from flask_bcrypt import Bcrypt
 from flask_mail import Mail
+import stripe
 
 load_dotenv()
 
@@ -19,6 +20,9 @@ app.secret_key = os.getenv("SECRET_KEY")
 # Configuration
 app.config['SQLALCHEMY_DATABASE_URI'] = f"postgresql://{os.getenv('DB_USERNAME')}:{os.getenv('DB_PASSWORD')}@{os.getenv('DB_SERVER')}:{os.getenv('DB_PORT')}/{os.getenv('DB_NAME')}"
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+app.config['STRIPE_PUBLIC_KEY'] = 'pk_test_51KsVZEHO3dppaz3nfFWAJRiDzEUP8Xnwvqbq5OHb7A6jH3Rw9xDJmJPQaTrBIYBPVTmnt3sVPSTvWmnNSnyPXGNI00X77FuXoK'
+app.config['STRIPE_SECRET_KEY'] = 'sk_test_51KsVZEHO3dppaz3nHc3JxcGhTISvVAJVlphKRdqnRom5wlkZxKsMnlon19VjQlJUdRCLKWSZu9004HRUb6hte4dC00x6w6xOjJ'
+stripe.api_key = app.config['STRIPE_SECRET_KEY']
 
 app.config['MAIL_SERVER']='smtp.mailtrap.io'
 app.config['MAIL_PORT'] = 2525
