@@ -16,6 +16,12 @@ class QairTestCase(unittest.TestCase):
         tester = app.test_client(self)
         response = tester.get('/users/forget_password', content_type='html/text')
         self.assertEqual(response.status_code, 200)
+        
+    def test_base_route(self):
+        client = app.test_client(self)
+        url = '/admins/dashboard'
+        response = client.get(url)
+        assert response.status_code == 200
 
 if __name__ == "__main__":
     unittest.main()
