@@ -5,7 +5,7 @@ from flask_login import current_user, login_required
 from qair import bcrypt, db
 from qair.company.forms import *
 from qair.company.utils import remove_photo, save_photos
-from qair.models import Airplane, Company, Flight, Review, Route
+from qair.models import Airplane, Company, Flight, FlightClass, Review, Route
 
 company = Blueprint("company", __name__, url_prefix="/company")
 
@@ -112,6 +112,11 @@ def create_flight():
             flight = Flight(int(plane), form.flight_name.data,
                             form.departure_time.data, int(route))
             db.session.add(flight)
+            db.session.commit()
+            businessClass=FlightClass("Business", int(plane), form.business_class.data)
+            econmyClass=FlightClass("Economy", int(plane), form.economy_class.data)
+            db.session.add(businessClass)
+            db.session.add(econmyClass)
             db.session.commit()
             flash("Flight Created", "success")
     return render_template("company/create-flight.html", form=form, airplanes=airplanes, len=len, routes=routes)

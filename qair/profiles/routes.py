@@ -132,8 +132,3 @@ def remove_cover_photo():
 @login_required
 def payment():
     return render_template("profiles/payment.html")
-
-@profiles.route("/view-flight")
-@login_required
-def view_flight():
-    return render_template("profiles/view-flight.html")

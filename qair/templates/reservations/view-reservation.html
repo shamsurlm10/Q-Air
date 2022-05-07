@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %} View Reservation {% endblock %}
+
+{% block css%}
+<link rel="stylesheet" href="{{url_for('static', filename='style/reservation/bookflight.css')}}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-2">
+    <div class="row">
+        {% for reservation in reservations %}
+        <div class="col-md-6 mb-3">
+            <div class="card card-company card-body shadow-card p-4 w-100">
+                <h2 class="font-color">Flight #{{reservation.flight.id}}</h2>
+                <div class="trip-head">{{reservation.flight.airplane.airplane_name}}</div>
+                <div class="trip-head">{{reservation.flight.airplane.company.company_name}}</div>
+                <hr>
+                <h6>Total Number of Seat: <b>{{reservation.flight.airplane.passenger_capacity}}</b></h6>
+                <h6>Flight Class: <b>{{reservation.flight_class.class_name}}</b></h6>
+                <h6>Flight Date: <b>{{reservation.flight.getDepartDate()}}</b></h6>
+                <h6>Route: <b>{{reservation.flight.route.destination}} to {{reservation.flight.route.origin}}</b></h6>
+                <h3 class="font-color">Instruction</h3>
+                <p>Lift depends upon <br> 
+                   <b>(1)</b> shape of the airfoil <br> 
+                   <b>(2)</b> the angle of attack <br> 
+                   <b>(3)</b> the area of the surface exposed to the airstream <br> 
+                   <b>(4)</b> the square of the air speed <br> 
+                   <b>(5)</b> the air density. Weight: The weight acts vertically downward <br> 
+                   from the center of gravity(CG) of the airplane.</p>
+            </div>
+            <a href="#" class="w-100 btn btn-dark mt-2">Print</a>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}

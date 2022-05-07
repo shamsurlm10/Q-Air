@@ -33,6 +33,30 @@
                                 {% endif %}
                             </select>
                         </div>
+                        <!-- FlightClass -->
+                        <div class="mt-4 mb-2">
+                            {% if form.business_class.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in form.business_class.errors %}
+                                <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.business_class(class="form-control", id="business_class") }}
+                            {% endif %}
+                        </div>
+                        <div class="mt-4 mb-2">
+                            {% if form.economy_class.errors %}
+                            <div class="invalid-feedback">
+                                {% for error in form.economy_class.errors %}
+                                <span>{{ error }}</span>
+                                {% endfor %}
+                            </div>
+                            {% else %}
+                            {{ form.economy_class(class="form-control", id="economy_class") }}
+                            {% endif %}
+                        </div>
+                        <!--  -->
                         <div class="mt-4 mb-2">
                             <select name="route-name" class="form-control" id="route-name">
                                 {% if len(routes) <= 0 %}

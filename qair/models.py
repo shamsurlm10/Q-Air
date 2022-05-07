@@ -79,6 +79,7 @@ class Profile(db.Model):
     address = db.relationship("Address", backref="profile", uselist=False)
     reviews = db.relationship("Review", backref="profile")
     company = db.relationship("Company", backref="company", uselist=False)
+    reservations = db.relationship("Reservation", backref="profile")
     # flight_bookmarks = db.Column(db.ARRAY(db.Integer), default=[])
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
@@ -192,6 +193,7 @@ class Flight(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     route_id = db.Column(db.Integer, db.ForeignKey("route.id"))
     airplane_id = db.Column(db.Integer, db.ForeignKey("airplane.id"))
+    reservations = db.relationship("Reservation", backref="flight")
     flight_name = db.Column(db.String, nullable=False)
     depart_time = db.Column(db.DateTime)
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
@@ -202,20 +204,30 @@ class Flight(db.Model):
         self.flight_name = flight_name
         self.depart_time = depart_time
         self.route_id = route_id
+    
+    def getDepartDate(self):
+        return self.depart_time.strftime("%d %B, %Y, %I:%M:%S %p")
+        
+class FlightClass(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    class_name = db.Column(db.String)
+    airplane_id = db.Column(db.Integer, db.ForeignKey("airplane.id"))
+    reservations = db.relationship("Reservation", backref="flight_class")
+    cost = db.Column(db.Integer)
+    created_at = db.Column(db.DateTime, default=datetime.utcnow())
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow())
 
-# class FlightClass(db.Model):
-#     class_name = db.Column(db.String)
-#     airplane_id = db.Column(db.Integer, db.ForeignKey("airplane.id"))
-#     cost = db.Column(db.Integer(15))
-#     created_at = db.Column(db.DateTime, default=datetime.utcnow())
-#     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
-
+    def __init__(self, class_name: str, airplane_id: int, cost: int) -> None:
+        self.class_name = class_name
+        self.airplane_id = airplane_id
+        self.cost = cost
 
 class Airplane(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     airplane_name = db.Column(db.String)
     airplane_model = db.Column(db.String)
     flights = db.relationship("Flight", backref="airplane")
+    flight_classes = db.relationship("FlightClass", backref="airplane")
     company_id = db.Column(db.Integer, db.ForeignKey("company.id"))
     passenger_capacity = db.Column(db.Integer)
     created_at = db.Column(db.DateTime, default=datetime.utcnow())
@@ -226,11 +238,6 @@ class Airplane(db.Model):
         self.airplane_model = airplane_model
         self.company_id = company_id
         self.passenger_capacity = passerger_capacity
-
-# class AirplaneRoute(db.Model):
-#     airplane_id = db.Column(db.String)
-#     created_at = db.Column(db.DateTime, default=datetime.utcnow())
-#     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
 
 
 class Route(db.Model):
@@ -251,11 +258,21 @@ class Route(db.Model):
         self.duration = duration
         self.company_id = company_id
 
-# class Reservation(db.Model):
-#     id = db.Column(db.Integer, primary_key=True)
-#     profile_id = db.Column(db.Integer, db.ForeignKey("profile.id"))
-#     flight_id = db.Column(db.Integer, db.ForeignKey("flight.id"))
-#     seat_no = db.Column(db.Integer(15))
-#     eticket_id = db.Column(db.String)
-#     created_at = db.Column(db.DateTime, default=datetime.utcnow())
-#     updated_at = db.Column(db.DateTime, default=datetime.utcnow())
+class Reservation(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    profile_id = db.Column(db.Integer, db.ForeignKey("profile.id"))
+    flight_id = db.Column(db.Integer, db.ForeignKey("flight.id"))
+    seat_no = db.Column(db.Integer)
+    eticket_id = db.Column(db.String)
+    flight_class_id = db.Column(db.Integer, db.ForeignKey("flight_class.id"))
+    created_at = db.Column(db.DateTime, default=datetime.utcnow())
+    updated_at = db.Column(db.DateTime, default=datetime.utcnow())
+
+    def __init__(self, profile_id: int, 
+                 flight_id: int, seat_no: int, 
+                 eticket_id: int, flight_class_id: int) -> None:
+        self.profile_id = profile_id
+        self.flight_id = flight_id
+        self.seat_no = seat_no
+        self.flight_class_id = flight_class_id
+        self.eticket_id = eticket_id

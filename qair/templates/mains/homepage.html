@@ -18,18 +18,18 @@
             <button class="p-2 btn-nav pill-btn" onclick="onPillClick('flightstatus')">Flight Status</button>
           </div>
           <div id="pills-book">
-            <form action="">
+            <form action="{{url_for('mains.search_flight')}}", method="POST">
               <div class="row g-0 px-2 mt-4">
                 <div class="col form-floating">
-                  <input class="form-control" placeholder="Leave a comment here" id="floatingTextarea" />
+                  <input class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="from"/>
                   <label for="floatingTextarea">From</label>
                 </div>
                 <div class="col form-floating">
-                  <input class="form-control" placeholder="Leave a comment here" id="floatingTextarea" />
+                  <input class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="to"/>
                   <label for="floatingTextarea">To</label>
                 </div>
                 <div class="col">
-                  <select class="form-control" style="height: 100%;" name="" id="">
+                  <select class="form-control" style="height: 100%;" name="class_name" id="">
                     <option value="">
                       Select Passenger/Class
                     </option>
@@ -39,13 +39,10 @@
                     <option value="">
                       Business
                     </option>
-                    <option value="">
-                      Premium
-                    </option>
                   </select>
                 </div>
                 <div class="col">
-                  <input type="date" class="form-control" placeholder="Leave a comment here" id="floatingTextarea"
+                  <input type="date" class="form-control" placeholder="Leave a comment here" id="floatingTextarea" name="flight_date"
                     style="height: 100%;" />
                 </div>
               </div>

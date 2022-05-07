@@ -32,6 +32,12 @@ class CreateFlight(FlaskForm):
         DataRequired(), Length(max=40, min=2)
     ], render_kw={"placeholder": "Airplane Name"})
     departure_time = DateTimeLocalField("Depart time", format='%Y-%m-%dT%H:%M', validators=[DataRequired()])
+    
+    business_class = StringField("Business Class", validators=[
+        DataRequired(), Length(max=40, min=2)], render_kw={"placeholder": "Business Class Cost"})
+    economy_class = StringField("Economy Class", validators=[
+        DataRequired(), Length(max=40, min=2)], render_kw={"placeholder": "Economy Class Cost"})
+    
     save = SubmitField("Create")
     
 class EditFlight(FlaskForm):

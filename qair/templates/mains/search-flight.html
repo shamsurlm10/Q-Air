@@ -1,6 +1,12 @@
-{% extends "company/company-settings-layout.html" %} {% block title %} View
-Planes {% endblock %} {% block sub_content %}
-<div class="container">
+{% extends "base.html" %}
+{% block title %} Homepage {% endblock %}
+
+{% block css%}
+<link rel="stylesheet" href="{{url_for('static', filename='style/mains/homepage.css')}}">
+{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
     <div class="row">
         {% for flight in flights %}
         <div class="col-sm-6 mb-3">
@@ -13,7 +19,7 @@ Planes {% endblock %} {% block sub_content %}
                         Number of Passenger: {{len(flight.reservations)}}
                     </p>
                     {% if current_user.profile.company.id == flight.airplane.company_id %}
-                    <a href="{{ url_for('company.edit_flight', id=flight.id) }}" class="btn btn-sm btn-dark">Edit Flight</a>
+                    <a href="{{url_for('reservations.payment', flight_id = flight.id)}}" class="btn btn-sm btn-dark">Book Now</a>
                     {% endif %}
                 </div>
             </div>

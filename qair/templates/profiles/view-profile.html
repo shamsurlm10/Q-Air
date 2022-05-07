@@ -11,7 +11,7 @@
                 <img src="{{ url_for('static', filename=profile.cover_photo)}}" alt="Cover photo"
                 class="cover-photo">
                 <a href="{{ url_for('profiles.change_profile_info', id=current_user.profile.id) }}" class="btn btn-sm btn-light text-primary edit-profile-btn">Edit Profile</a>
-                <a href="{{ url_for('profiles.view_flight', id=current_user.profile.id) }}" class="btn btn-sm btn-light text-primary edit-profile-btn">View Flight</a>
+                <a href="{{ url_for('reservations.view_reservation') }}" class="btn btn-sm btn-light text-primary edit-profile-btn">View Reservations</a>
             </div>
             <div class="d-flex-custom">
                 <div class="profile-photo-container d-flex justify-content-center">

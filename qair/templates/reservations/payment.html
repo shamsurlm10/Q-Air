@@ -11,117 +11,95 @@
         <div class="col-md-5 mb-3">
             <div class="card card-company card-body shadow-card p-4 w-100">
                 <h3 class="trip-head">Trip Review</h3>
-                <h5><b>Bogra to Tongi</b></h5>
-                <p class="trip-text">Monday,11 April 2022</p>
+                <h5><b>{{flight.route.origin}} To {{flight.route.destination}}</b></h5>
+                <p class="trip-text">{{flight.getDepartDate()}}</p>
                 <hr>
                 <div class="ms-4">
-                    <div class="d-flex">
-                        <div class="flex-grow-1">
-                            <h5 class="font-color">Departure</h5>
-                            <p class="trip-text">
-                                Monday,11 April 2022 17:45-KTM <br>
-                                Bogra, Urmi Airport <br>
-                            </p>
-                        </div>
-                        <div class="">
-                            <b>Price</b><br>
-                            <p class="trip-text">
-                                1000 USD
-                            </p>
-                        </div>
+                    <div>
+                        <h5 class="font-color">Departure</h5>
+                        <p class="trip-text">
+                            {{flight.getDepartDate()}} <br>
+                            {{flight.route.origin}} Airport <br>
+                        </p>
                     </div>
                     <h5 class="font-color">Arrival</h5>
                     <p class="trip-text">
-                        Monday, 11 April 2022 - 22:45 DOH <br>
-                        Tongi, Mohona International Airport Qatar <br>
+                        {{arrival_time}} <br>
+                        {{flight.route.destination}} Airport <br>
                     </p>
                     <h5 class="font-color">Flight Duration</h5>
                     <p class="trip-text">
                         5h 10 min <br>
                     </p>
-                    <div class="d-flex">
-                        <div class="flex-grow-1">
-                            <h5 class="font-color">Airplane</h5>
-                            <p class="trip-text">
-                                Qatar AirwaysQR 0653Airbus A330-300 <br>
-                            </p>
-                        </div>
-                        <div class="">
-                            <p class="font-color">
-                                Economy <br>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <hr>
-                <p class="trip-text">
-                    Connection Time: 1h 5min<br>
-                </p>
-                <hr>
-                <div class="ms-4">
-                    <div class="d-flex">
-                        <div class="flex-grow-1">
-                            <h5 class="font-color">Departure</h5>
-                            <p class="trip-text">
-                                Monday,11 April 2022 17:45-KTM <br>
-                                Bogra, Urmi Airport <br>
-                            </p>
-                        </div>
-                        <div class="">
-                            <b>Price</b><br>
-                            <p class="trip-text">
-                                1000 USD
-                            </p>
-                        </div>
-                    </div>
-                    <h5 class="font-color">Arrival</h5>
-                    <p class="trip-text">
-                        Monday, 11 April 2022 - 22:45 DOH <br>
-                        Tongi, Mohona International Airport Qatar <br>
-                    </p>
-                    <h5 class="font-color">Flight Duration</h5>
-                    <p class="trip-text">
-                        5h 10 min <br>
-                    </p>
-                    <div class="d-flex">
-                        <div class="flex-grow-1">
-                            <h5 class="font-color">Airplane</h5>
-                            <p class="trip-text">
-                                Qatar AirwaysQR 0653Airbus A330-300 <br>
-                            </p>
-                        </div>
-                        <div class="">
-                            <p class="font-color">
-                                Business <br>
-                            </p>
-                        </div>
+                    <div class="flex-grow-1">
+                        <h5 class="font-color">Airplane</h5>
+                        <p class="trip-text">
+                            {{ flight.airplane.airplane_name }}, {{ flight.airplane.airplane_model }}<br>
+                        </p>
                     </div>
                 </div>
             </div>
         </div>
+
         <div class="col-md-7 mb-3">
             <div class="card card-company card-body shadow-card p-4 w-100">
                 <h3 class="trip-head">Payment Option</h3>
                 <hr>
-                <div class="d-flex">
-                    <div class="flex-grow-1">
-                        <h5 class="font-color">Departure</h5>
-                        <p class="trip-text">
-                            Monday,11 April 2022 17:45-KTM <br>
-                            Bogra, Urmi Airport <br>
-                        </p>
-                    </div>
-                    <div class="">
-                        <b>Price</b><br>
-                        <p class="trip-text">
-                            1000 USD
-                        </p>
-                    </div>
-                </div>
-                <hr>
                 <h5><b>Payment Methods</b></h5>
-                <img src="https://independencevethospital.com/wp-content/uploads/2021/08/paymentoptions.jpg" alt="">
-                <a href="#" id="buy_now_btn" class="w-100 btn btn-secondary">Book the flight</a>
+                <img src="https://raw.githubusercontent.com/Shipu/bkash-example/master/bkash_payment_logo.png" alt="">
+                <form class="my-2" method="POST">
+                    {{ form.hidden_tag() }}
+                    <div class="card bg-dark text-light">
+                        <div class="card-body my-0">
+                            <div class="text-center">Cost</div>
+                            {% for flightClass in flight.airplane.flight_classes %}
+                            <div>{{ flightClass.class_name }} Class: {{ flightClass.cost }} TK</div>
+                            {% endfor %}
+                        </div>
+                    </div>
+                    <div class="my-3">
+                        {{ form.flight_class.label }}
+                        {% if form.flight_class.errors%}
+                        {{ form.flight_class(class="form-control input-box is-invalid", id="flight_class",
+                        style="list-style-type: none;") }}
+                        <div class="invalid-feeedback">
+                            {% for error in form.flight_class.errors %}
+                            <span>{{ error }}</span>
+                            {%endfor%}
+                        </div>
+                        {% else %}
+                        {{ form.flight_class(class="form-control input-box", id="flight_class", style="list-style-type:
+                        none;") }}
+                        {%endif%}
+                    </div>
+                    <div class="mt-3">
+                        {{ form.seat_no.label }}
+                        {% if form.seat_no.errors%}
+                        {{ form.seat_no(class="form-control input-box is-invalid", id="seat_no") }}
+                        <div class="invalid-feeedback">
+                            {% for error in form.seat_no.errors %}
+                            <span>{{ error }}</span>
+                            {%endfor%}
+                        </div>
+                        {% else %}
+                        {{ form.seat_no(class="form-control input-box", id="seat_no") }}
+                        {%endif%}
+                    </div>
+                    <div class="mt-3">
+                        {{ form.trnx_id.label }}
+                        {% if form.trnx_id.errors%}
+                        {{ form.trnx_id(class="form-control input-box is-invalid", id="trnx_id") }}
+                        <div class="invalid-feeedback">
+                            {% for error in form.trnx_id.errors %}
+                            <span>{{ error }}</span>
+                            {%endfor%}
+                        </div>
+                        {% else %}
+                        {{ form.trnx_id(class="form-control input-box", id="trnx_id") }}
+                        {%endif%}
+                    </div>
+                    {{ form.submit(class="mt-3 w-100 btn btn-light") }}
+                </form>
             </div>
         </div>
     </div>
