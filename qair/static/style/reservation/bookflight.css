@@ -144,11 +144,6 @@
     color: #ffffff;
 }
 
-.card-image {
-    background-image: url("https://images.unsplash.com/photo-1536514498073-50e69d39c6cf?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1171&q=80");
-    background-repeat: no-repeat;
-    background-position: center;
-}
 .trip-text{
 font-style: normal;
 font-weight: 600;
@@ -165,4 +160,10 @@ color: #034C80;
 }
 .font-color{
     color: #034C80;
+}
+body{
+    background-image: url('https://images.unsplash.com/photo-1514477917009-389c76a86b68?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1967&q=80');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 2140px 1650px;
 }

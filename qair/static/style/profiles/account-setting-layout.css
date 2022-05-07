@@ -69,3 +69,10 @@
         height: 180px;
     }
 }
+
+body{
+    background-image: url('https://images.unsplash.com/photo-1514315153150-cd7d8d716178?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 2140px 1650px;
+}

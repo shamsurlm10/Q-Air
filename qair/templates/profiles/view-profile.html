@@ -25,20 +25,20 @@
         <div class="col-md-8 offset-md-2">
             <h1 class="text-center profile-name">{{ profile.full_name }}</h1>
             {% if profile.dob %}
-            <p class="text-center my-0">Born on {{ profile.getDateOfBirth() }}</p>
+            <h5 class="text-center my-0 font-color">Born on {{ profile.getDateOfBirth() }}</h5>
             {% endif %}
             {% if profile.address.city and profile.address.country %}
-            <p class="text-center my-0">{{ profile.address.city }}, {{ profile.address.country }}</p>
+            <h5 class="text-center my-0 font-color">{{ profile.address.city }}, {{ profile.address.country }}</h5>
             {% elif profile.address.city and not profile.address.country %}
-            <p class="text-center my-0">{{ profile.address.city }}</p>
+            <h5 class="text-center my-0 font-color">{{ profile.address.city }}</h5>
             {% else %}
-            <p class="text-center my-0">{{ profile.address.country }}</p>
+            <h5 class="text-center my-0 font-color">{{ profile.address.country }}</h5>
             {% endif %}
             {% if profile.address.street %}
-            <p class="text-center my-0">Street: {{ profile.address.street }}</p>
+            <h5 class="text-center my-0 font-color">Street: {{ profile.address.street }}</h5>
             {% endif %}
             {% if profile.address.postal_code %}
-            <p class="text-center my-0">Postal Code: {{ profile.address.postal_code }}</p>
+            <h5 class="text-center my-0 font-color">Postal Code: {{ profile.address.postal_code }}</h5>
             {% endif %}
         </div>
     </div>
